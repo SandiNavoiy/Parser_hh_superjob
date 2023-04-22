@@ -1,5 +1,7 @@
+from scr.abc import Employer
 
-class SuperJobAPI():
+
+class SuperJobAPI(Employer):
 
     pass
     def get_vacancies(self):
