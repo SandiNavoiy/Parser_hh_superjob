@@ -6,9 +6,7 @@ class Employer(ABC):
     def get_vacancies(self):
         pass
 
-    @abstractmethod
-    def connect(self):
-        pass
+
 
 class VacancyStorage(ABC):
     """Абстрактный класс для классов работы с данными вакансий"""
