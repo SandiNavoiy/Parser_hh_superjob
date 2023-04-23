@@ -3,14 +3,15 @@ from scr.headhunter import HeadHunterAPI
 from scr.vacancy import Vacancy
 from scr.json_saver import JSONSaver
 
-
-
 hh_api = HeadHunterAPI()
 superjob_api = SuperJobAPI()
 
 # Получение вакансий с разных платформ
-hh_vacancies = hh_api.get_vacancies("Python")
-superjob_vacancies = superjob_api.get_vacancies("Python")
+key_words = input("Введите кючевое слово поисков")
+hh_vacancies = hh_api.get_vacancies(key_words)
+superjob_vacancies = superjob_api.get_vacancies(key_words)
+
+
 
 # Создание экземпляра класса для работы с вакансиями
 vacancy = Vacancy("Python Developer", "<https://hh.ru/vacancy/123456>", "100 000-150 000 руб.", "Требования: опыт работы от 3 лет...")
