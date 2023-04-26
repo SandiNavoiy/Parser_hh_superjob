@@ -26,6 +26,8 @@ class HeadHunterAPI(Employer):
         # print(jsObj)
 
         self.req = requests.get('https://api.hh.ru/vacancies').json()
+        with open("hh.json", "w", encoding="utf-8") as f:
+            json.dump(self.req, f, indent=2, ensure_ascii=False)
 
     def __repr__(self):
         return self.req
