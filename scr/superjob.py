@@ -21,7 +21,7 @@ class SuperJobAPI(Employer):
         headers = {'X-Api-App-Id': secret_key}
         relative_url = 'vacancies/'
         self.response = requests.get('https://api.superjob.ru/2.0/%s' % relative_url,params=params, headers=headers).json()
-        print(self.response)
+
         with open("sj.json", "w", encoding="utf-8") as f:
             json.dump(self.response, f, indent=2, ensure_ascii=False)
 
