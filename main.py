@@ -9,7 +9,7 @@ superjob_api = SuperJobAPI()
 # Получение вакансий с разных платформ
 key_words = input("Введите кючевое слово поисков")
 hh_vacancies = hh_api.get_vacancies()
-superjob_vacancies = superjob_api.get_vacancies()
+#superjob_vacancies = superjob_api.get_vacancies()
 
 
 
