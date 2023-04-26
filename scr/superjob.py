@@ -1,3 +1,5 @@
+import json
+
 import requests
 
 from scr.abc import Employer
@@ -20,6 +22,8 @@ class SuperJobAPI(Employer):
         relative_url = 'vacancies/'
         self.response = requests.get('https://api.superjob.ru/2.0/%s' % relative_url,params=params, headers=headers).json()
         print(self.response)
+        with open("sj.json", "a", encoding="utf-8") as f:
+            f.write(json.dumps()
 
 
     def __repr__(self):
