@@ -1,0 +1,9 @@
+requests~=2.28.2
+pip~=23.1.1
+attrs~=22.2.0
+build~=0.10.0
+keyring~=23.13.1
+setuptools~=65.5.0
+packaging~=23.0
+pyparsing~=3.0.9
+zipp~=3.15.0
