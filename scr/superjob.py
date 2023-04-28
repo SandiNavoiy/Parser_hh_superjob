@@ -12,12 +12,12 @@ class SuperJobAPI(Employer):
         self.__secret_key = "v3.r.137507897.7442de4e25a339834ba4ba48698f024e614b7679.9bcdfdef787ba2af71fef71ac60a6c78b451c32d"
         self.__url = 'https://api.superjob.ru/2.0/%s'
 
-    def get_vacancies(self):
+    def get_vacancies(self, keyword = 'Программист'):
         catalogue_id = 48  # id каталога "Разработка, программирование"
         #town_id = 4  # id города Москва
         vacancies_count = 100  # api запрещает запрашивать больше 100 вакансий
-        keyword = 'Программист'  # ключивое слово
-        params = {'catalogues': catalogue_id, 'count': vacancies_count, 'keyword': keyword}
+        self.keyword = 'Программист'  # ключивое слово
+        params = {'catalogues': catalogue_id, 'count': vacancies_count, 'keyword': self.keyword}
         headers = {'X-Api-App-Id': self.__secret_key}
         relative_url = 'vacancies/'
         try:

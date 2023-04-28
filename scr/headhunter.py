@@ -11,16 +11,16 @@ class HeadHunterAPI(Employer):
     def __init__(self):
         self.__url = 'https://api.hh.ru/vacancies'
 
-    def get_vacancies(self):
-        # params = {
-        #    'text': 'NAME:Аналитик',  # Текст фильтра. В имени должно быть слово "Аналитик"
-        #    'area': 1,  # Поиск ощуществляется по вакансиям города Москва
-        #    'page': page,  # Индекс страницы поиска на HHКЕ
-        #    'per_page': 100  # Кол-во вакансий на 1 странице
-        # }
+    def get_vacancies(self, text = 'програмист'):
+        self.text = text
+        params = {
+            'text': self.text,  # Текст фильтра. В имени должно быть слово "Аналитик"
+            'area': 1,  # Поиск ощуществляется по вакансиям города Москва
+            'per_page': 100  # Кол-во вакансий на 1 странице
+         }
 
         try:
-            self.req = requests.get(self.__url).json()
+            self.req = requests.get(self.__url, params).json()
 
         except requests.exceptions.RequestException as e:
             print(f"Нет соединения, ошибка{e}. СМЕНИ РЕГИОН VPN!! ")
