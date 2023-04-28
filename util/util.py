@@ -24,11 +24,11 @@ def interact_with_user():
         print("1 - Загрузить свежую информацию с hh.ru")
         print("2 - Загрузить свежую информацию с superjob.ru")
         print("3 - -")
-        print("4 - -")
+        print("4 - - просмотр файла с выбраными вакансиями")
         print("5 - очистка файла (полная с избранными вакансиями")
         print("6 - Выйти")
 
-        choice = input()
+        choice = input("Введите значение---")
 
         if choice == "1":
             key_words = input("Введите ключевое слово поисков")
@@ -40,6 +40,13 @@ def interact_with_user():
             key_words = input("Введите ключевое слово поисков")
             superjob_api = SuperJobAPI()
             superjob_vacancies = superjob_api.get_vacancies()
+
+
+        elif choice == "4":
+            read = JSONSaver()
+            read.read_file_favourites()
+
+
 
 
 
