@@ -28,7 +28,7 @@ class JSONSaver(VacancyStorage):
 
     def clean_file_favourites(self):
         """очистка файла (полная с избраными вакансиями"""
-        with open(path, 'w'):
+        with open(favourites.json, 'w'):
             print("файл очищен")
 
 
