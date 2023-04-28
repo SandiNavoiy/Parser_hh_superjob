@@ -1,15 +1,11 @@
 from scr.superjob import SuperJobAPI
 from scr.headhunter import HeadHunterAPI
 from scr.vacancy import Vacancy
+from util.util import welcome
+
 #from scr.json_saver import JSONSaver
 
-hh_api = HeadHunterAPI()
-superjob_api = SuperJobAPI()
 
-# Получение вакансий с разных платформ
-key_words = input("Введите кючевое слово поисков")
-hh_vacancies = hh_api.get_vacancies()
-#superjob_vacancies = superjob_api.get_vacancies()
 
 
 
@@ -39,5 +35,12 @@ hh_vacancies = hh_api.get_vacancies()
 #    print_vacancies(top_vacancies)
 
 
-#if __name__ == "__main__":
-#    user_interaction()
+if __name__ == '__main__':
+    welcome()
+    hh_api = HeadHunterAPI()
+    superjob_api = SuperJobAPI()
+
+    # Получение вакансий с разных платформ
+    key_words = input("Введите кючевое слово поисков")
+    hh_vacancies = hh_api.get_vacancies()
+    # superjob_vacancies = superjob_api.get_vacancies()
