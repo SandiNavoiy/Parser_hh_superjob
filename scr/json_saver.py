@@ -25,3 +25,10 @@ class JSONSaver(VacancyStorage):
         for line in lines:
             vacancy_data = json.loads(line)
             if vacancy_data != vars(vacancy):
+
+    def clean_file_favourites(self):
+        """очистка файла (полная с избраными вакансиями"""
+        with open(path, 'w'):
+            print("файл очищен")
+
+

@@ -33,11 +33,19 @@ def interact_with_user():
             hh_api = HeadHunterAPI()
             hh_vacancies = hh_api.get_vacancies()
 
-        if choice == "2":
+
+        elif choice == "2":
             key_words = input("Введите кючевое слово поисков")
             superjob_api = SuperJobAPI()
             superjob_vacancies = superjob_api.get_vacancies()
-        if choice == "5":
+        elif choice == "4":
+
+            superjob_api = SuperJobAPI()
+            superjob_vacancies = superjob_api.get_vacancies()
+
+        elif choice == "5":
             print("Спасибо за работу\n"
                   "До новых встреч!")
             break
+        else:
+            print("Введите правильное занчения действий!!!!")
