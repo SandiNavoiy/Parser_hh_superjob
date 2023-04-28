@@ -1,5 +1,6 @@
 # сборник функций
 from scr.headhunter import HeadHunterAPI
+from scr.json_saver import JSONSaver
 from scr.superjob import SuperJobAPI
 
 
@@ -22,31 +23,39 @@ def interact_with_user():
         print("Выберите действие:")
         print("1 - Загрузить свежую информацию с hh.ru")
         print("2 - Загрузить свежую информацию с superjob.ru")
-        print("3 - Добавить вакансию")
-        print("4 - Фильтровать вакансии")
-        print("5 - Удалить вакансию")
+        print("3 - -")
+        print("4 - -")
+        print("5 - очистка файла (полная с избранными вакансиями")
         print("6 - Выйти")
 
         choice = input()
 
         if choice == "1":
-            key_words = input("Введите кючевое слово поисков")
+            key_words = input("Введите ключевое слово поисков")
             hh_api = HeadHunterAPI()
             hh_vacancies = hh_api.get_vacancies()
 
 
         elif choice == "2":
-            key_words = input("Введите кючевое слово поисков")
+            key_words = input("Введите ключевое слово поисков")
             superjob_api = SuperJobAPI()
             superjob_vacancies = superjob_api.get_vacancies()
-        elif choice == "4":
 
-            superjob_api = SuperJobAPI()
-            superjob_vacancies = superjob_api.get_vacancies()
+
 
         elif choice == "5":
-            print("Спасибо за работу\n"
+            clean = JSONSaver()
+            clean.clean_file_favourites()
+
+
+
+        elif choice == "6":
+            print("--------------")
+            print("Спасибо за обращение\n"
                   "До новых встреч!")
+            print("--------------")
             break
+
+
         else:
-            print("Введите правильное замения действий!!!!")
+            print("Введите правильное значение действий!!!!")
