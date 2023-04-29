@@ -2,6 +2,7 @@
 from scr.headhunter import HeadHunterAPI
 from scr.json_saver import JSONSaver
 from scr.superjob import SuperJobAPI
+from scr.vacancy import Vacancy
 
 
 def welcome():
@@ -19,44 +20,57 @@ def interact_with_user():
     Функция для взаимодействия с пользователем.
     :param vacancies: список вакансий.
     """
+    json_saver = JSONSaver()
+    hh_api = HeadHunterAPI()
+    superjob_api = SuperJobAPI()
+    vacancy = Vacancy()
+
     while True:
         print("Выберите действие:")
         print("1 - Загрузить свежую информацию с hh.ru")
         print("2 - Загрузить свежую информацию с superjob.ru")
         print("3 - -")
-        print("4 - - просмотр файла с выбраными вакансиями")
+        print("4 - просмотр файла с избраными вакансиями")
         print("5 - очистка файла (полная с избранными вакансиями")
-        print("6 - Выйти")
+        print("8 - Просмотр файла загрузки с API superjob, формат json (служебная функция)")
+        print("9 - Просмотр файла загрузки с API superjob, формат json (служебная функция)")
+        print("10 - Выйти")
+
 
         choice = input("Введите значение---")
 
         if choice == "1":
-            key_words = input("Введите ключевое слово поисков")
-            hh_api = HeadHunterAPI()
-            hh_vacancies = hh_api.get_vacancies()
+            key_words = input("Введите ключевое слово поисков:   ")
+
+            hh_vacancies = hh_api.get_vacancies(key_words)
 
 
         elif choice == "2":
-            key_words = input("Введите ключевое слово поисков")
-            superjob_api = SuperJobAPI()
-            superjob_vacancies = superjob_api.get_vacancies()
+            key_words = input("Введите ключевое слово поисков:    ")
+            superjob_vacancies = superjob_api.get_vacancies(key_words)
 
 
         elif choice == "4":
-            read = JSONSaver()
-            read.read_file_favourites()
+
+            vacancy.read_file_favourites('favourites.json')
 
 
 
 
 
         elif choice == "5":
-            clean = JSONSaver()
-            clean.clean_file_favourites()
+
+            json_saver.clean_file_favourites()
+
+        elif choice == "8":
+            vacancy.read_file_favourites('hh.json')
+
+        elif choice == "9":
+            vacancy.read_file_favourites('sj.json')
 
 
 
-        elif choice == "6":
+        elif choice == "10":
             print("--------------")
             print("Спасибо за обращение\n"
                   "До новых встреч!")

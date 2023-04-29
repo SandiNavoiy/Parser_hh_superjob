@@ -26,15 +26,10 @@ class JSONSaver(VacancyStorage):
     #        vacancy_data = json.loads(line)
     #        if vacancy_data != vars(vacancy):
 
-    def read_file_favourites(self):
-        """просмотр файла с избраными вакансиями"""
-        with open('favourites.json', 'r', encoding="utf8") as file:
-            f = file.read()
-            print(f)
 
 
-    @staticmethod
-    def clean_file_favourites():
+
+    def clean_file_favourites(self):
         """очистка файла (полная с избраными вакансиями"""
         with open("favourites.json", 'w'):
             print("--------------")

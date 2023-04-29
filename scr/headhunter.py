@@ -11,7 +11,7 @@ class HeadHunterAPI(Employer):
     def __init__(self):
         self.__url = 'https://api.hh.ru/vacancies'
 
-    def get_vacancies(self, text = 'програмист'):
+    def get_vacancies(self, text):
         self.text = text
         params = {
             'text': self.text,  # Текст фильтра. В имени должно быть слово "Аналитик"
