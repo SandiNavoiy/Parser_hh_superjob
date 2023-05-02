@@ -14,8 +14,8 @@ class HeadHunterAPI(Employer):
     def get_vacancies(self, text):
         self.text = text
         params = {
-            'text': self.text,  # Текст фильтра. В имени должно быть слово "Аналитик"
-            'area': 1,  # Поиск ощуществляется по вакансиям города Москва
+            'text': self.text,  # Текст фильтра.
+
             'per_page': 100  # Кол-во вакансий на 1 странице
          }
 
