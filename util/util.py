@@ -69,10 +69,10 @@ def interact_with_user():
             json_saver.clean_file_favourites()
 
         elif choice == "8":
-            vacancy.read_file_favourites('hh.json')
+            print(vacancy.read_file_favourites('hh.json'))
 
         elif choice == "9":
-            vacancy.read_file_favourites('sj.json')
+            print(vacancy.read_file_favourites('sj.json'))
 
 
 

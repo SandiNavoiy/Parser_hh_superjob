@@ -25,6 +25,7 @@ class Vacancy(VacancyStorage):
         """просмотр файла с избраными вакансиями"""
         with open(file_name, 'r', encoding="utf8") as file:
             self.f = file.read()
+        return self.f
 
 
     def list_of_vacancy(self):
