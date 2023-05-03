@@ -5,6 +5,7 @@ from scr.abc import VacancyStorage, JsonSave
 
 
 class JSONSaver(JsonSave):
+    """Класс сохранения вакансий в файл и его изменения"""
     def __init__(self, filename=None):
         self.filename = filename
 

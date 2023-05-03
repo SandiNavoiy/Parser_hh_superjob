@@ -4,6 +4,7 @@ from scr.abc import VacancyStorage
 
 
 class Vacancy(VacancyStorage):
+    """Класс работы с вакансиями"""
     def __init__(self, job_title: str = None, url_job: str = None, payment_range=None, requirements: str = None):
         if isinstance(job_title, str):
             raise ValueError('Параметр "job_title" должен быть строкой')
@@ -121,3 +122,30 @@ class Vacancy(VacancyStorage):
                 self.new_top.append(i)
                 n += 1
         return self.new_top
+
+    def get_vacancy(self):
+        pass
+
+    def __gt__(self, other) -> bool:
+        if isinstance(other, Vacancy):
+            if int(self.salary) > int(other.salary):
+                return True
+        return False
+
+    def __ge__(self, other) -> bool:
+        if isinstance(other, Vacancy):
+            if int(self.salary) >= int(other.salary):
+                return True
+        return False
+
+    def __lt__(self, other) -> bool:
+        if isinstance(other, Vacancy):
+            if int(self.salary) < int(other.salary):
+                return True
+        return False
+
+    def __le__(self, other) -> bool:
+        if isinstance(other, Vacancy):
+            if int(self.salary) <= int(other.salary):
+                return True
+        return False

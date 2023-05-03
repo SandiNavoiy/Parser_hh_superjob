@@ -34,7 +34,9 @@ def interact_with_user():
         print("8 - Просмотр файла загрузки с API superjob, формат json (служебная функция)")
         print("9 - Просмотр файла загрузки с API superjob, формат json (служебная функция)")
         print("10 - Вывод  ТОП вакансий сортировкой(настраемой)")
-        print("11 - Выйти")
+        print("11 - Вывод  ТОП вакансий сортировкой(настраемой)")
+        print("12 - Вывод  ТОП вакансий сортировкой(настраемой)")
+        print("13 - Выйти")
 
         choice = input("Введите значение---")
 
@@ -50,11 +52,9 @@ def interact_with_user():
 
 
         elif choice == "3":
-
             printing(vacancy.read_file_favourites('favor.json'))
 
         elif choice == "4":
-
             vacancy.list_of_vacancy()
             printing(vacancy.sorting())
 
@@ -93,8 +93,12 @@ def interact_with_user():
                 vacancy.list_of_vacancy()
                 vacancy.sorting()
                 printing(vacancy.top(top))
-
         elif choice == "11":
+            pass
+        elif choice == "12":
+            pass
+
+        elif choice == "13":
             print("--------------")
             print("Спасибо за обращение\n"
                   "До новых встреч!")
