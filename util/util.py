@@ -36,6 +36,7 @@ def interact_with_user():
         print("7 - очистка файла (полная с избранными вакансиями)")
         print("8 - Просмотр файла загрузки с API superjob, формат json (служебная функция)")
         print("9 - Просмотр файла загрузки с API superjob, формат json (служебная функция)")
+        print("11 - вывод  ТОП ваканисий в упрошенном виде с сортировкой(настраемой) ")
         print("10 - Выйти")
 
 
@@ -59,7 +60,7 @@ def interact_with_user():
         elif choice == "4":
 
             vacancy.list_of_vacancy()
-            print(vacancy.sorting())
+            printing(vacancy.sorting())
 
         elif choice == "5":
             vacancy.list_of_vacancy()
@@ -84,6 +85,19 @@ def interact_with_user():
         elif choice == "9":
             print(vacancy.read_file_favourites('sj.json'))
 
+        elif choice == "11":
+            top = int(input(" Введите количесво вакансий для вывода"))
+            try:
+                if not isinstance(top, int):
+                    raise ValueError('Параметр "top" должен быть числом')
+            except ValueError as e:
+                print(e)
+            else:
+                vacancy.list_of_vacancy()
+                vacancy.sorting()
+                printing(vacancy.top(top))
+
+
 
 
         elif choice == "10":
@@ -96,3 +110,9 @@ def interact_with_user():
 
         else:
             print("Введите правильное значение действий!!!!")
+
+
+def printing(new_list):
+    """функция для посторочного вывода списка"""
+    for i in new_list:
+        print(i)

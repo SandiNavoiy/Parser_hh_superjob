@@ -112,3 +112,13 @@ class Vacancy(VacancyStorage):
             self.new_list_sort = self.new_list
 
         return self.new_list_sort
+
+    def top(self, top: int):
+        n = 0
+        self.new_top = []
+        while n <= top:
+            for i in self.new_list_sort:
+                self.new_top.append(i)
+                n += 1
+        return self.new_top
+
