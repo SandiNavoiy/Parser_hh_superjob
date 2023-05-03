@@ -116,8 +116,8 @@ class Vacancy(VacancyStorage):
     def top(self, top: int):
         n = 0
         self.new_top = []
-        while n <= top:
-            for i in self.new_list_sort:
+        for i in self.new_list_sort:
+            if  n < top:
                 self.new_top.append(i)
                 n += 1
         return self.new_top
