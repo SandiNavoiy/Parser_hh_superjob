@@ -15,18 +15,31 @@ class Employer(ABC):
 
 class VacancyStorage(ABC):
     """Абстрактный класс для классов работы с данными вакансий"""
-    #@abstractmethod
-    #def add_vacancy(self, vacancy):
-    #    pass
+    @abstractmethod
+    def sorting(self, vacancy):
+        pass
+    @abstractmethod
+    def list_of_vacancy(self):
+        pass
 
     #@abstractmethod
     #def get_vacancies(self, **kwargs):
     #    pass
 
-    #@abstractmethod
-    #def remove_vacancy(self, vacancy):
-    #    pass
 
+    @abstractmethod
+    def top(self, vacancy):
+        pass
+class JsonSave(ABC):
+    @abstractmethod
+    def add_vacancy(self):
+        pass
+    @abstractmethod
+    def remove_vacancy(self):
+        pass
+    @abstractmethod
+    def clean_file_favourites(self):
+        pass
 
 
 

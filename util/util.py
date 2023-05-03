@@ -36,9 +36,8 @@ def interact_with_user():
         print("7 - Очистка файла избранного (полная)")
         print("8 - Просмотр файла загрузки с API superjob, формат json (служебная функция)")
         print("9 - Просмотр файла загрузки с API superjob, формат json (служебная функция)")
-        print("11 - Вывод  ТОП ваканисий сортировкой(настраемой)")
-        print("10 - Выйти")
-
+        print("10 - Вывод  ТОП ваканисий сортировкой(настраемой)")
+        print("11 - Выйти")
 
         choice = input("Введите значение---")
 
@@ -64,15 +63,16 @@ def interact_with_user():
 
         elif choice == "5":
             l = vacancy.list_of_vacancy()
-            id_add = int(input("введите id номер вакансии для добавление в избраное(для просмотра id выполните действие 4)"))
+            id_add = int(
+                input("введите id номер вакансии для добавление в избраное(для просмотра id выполните действие 4)"))
             json_saver.add_vacancy(id_add, l)
 
 
         elif choice == "6":
             vacancy.list_of_vacancy()
-            id_del = int(input("введите id номер вакансии для удаления из избраного (для просмотра id выполните действие 3)"))
+            id_del = int(
+                input("введите id номер вакансии для удаления из избраного (для просмотра id выполните действие 3)"))
             json_saver.remove_vacancy(id_del)
-
 
 
         elif choice == "7":
@@ -85,8 +85,8 @@ def interact_with_user():
         elif choice == "9":
             print(vacancy.read_file_favourites('sj.json'))
 
-        elif choice == "11":
-            top = int(input(" Введите количесво вакансий для вывода"))
+        elif choice == "10":
+            top = int(input(" Введите количество вакансий для вывода"))
             try:
                 if not isinstance(top, int):
                     raise ValueError('Параметр "top" должен быть числом')
@@ -97,10 +97,7 @@ def interact_with_user():
                 vacancy.sorting()
                 printing(vacancy.top(top))
 
-
-
-
-        elif choice == "10":
+        elif choice == "11":
             print("--------------")
             print("Спасибо за обращение\n"
                   "До новых встреч!")

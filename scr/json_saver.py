@@ -1,10 +1,10 @@
 import json
 from json import JSONDecodeError
 
-from scr.abc import VacancyStorage
+from scr.abc import VacancyStorage, JsonSave
 
 
-class JSONSaver(VacancyStorage):
+class JSONSaver(JsonSave):
     def __init__(self, filename=None):
         self.filename = filename
 
