@@ -22,9 +22,9 @@ class Vacancy(VacancyStorage):
         self.requirements = requirements  # требования
 
     def read_file_favourites(self, file_name):
-        """просмотр файла с избраными вакансиями"""
+        """Просмотр файла с избраными вакансиями"""
         with open(file_name, 'r', encoding="utf8") as file:
-            self.f = file.read()
+            self.f = json.loads(file.read())
         return self.f
 
     def list_of_vacancy(self):
@@ -86,7 +86,7 @@ class Vacancy(VacancyStorage):
         return self.new_list
 
     def sorting(self):
-        """сортировка hh"""
+        """Сортировка hh"""
         print("Выберите действие:")
         print("1 - сортировка по з/п, если з/п не указана то программа выводит ноль!")
         print("2 - сортировка по городу")
@@ -111,10 +111,11 @@ class Vacancy(VacancyStorage):
         return self.new_list_sort
 
     def top(self, top: int):
-        """выдача ТОП - количества вакансий"""
+        """Выдача ТОП - количества вакансий"""
         n = 0
         self.new_top = []
         for i in self.new_list_sort:
+
             if n < top:
                 self.new_top.append(i)
                 n += 1

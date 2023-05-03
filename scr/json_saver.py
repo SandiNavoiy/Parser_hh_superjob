@@ -11,15 +11,12 @@ class JSONSaver(VacancyStorage):
     def add_vacancy(self, id, new_list):
         """метод добавления вакансии в избраное"""
         temp_favourites = []
-        with open("favourites.json", 'r', encoding="utf8") as file:
-            data_new = json.loads(file.read())
+        for line in new_list:
+            if id == line["number"]:
+                temp_favourites.append(line)
 
-            for line in new_list:
-                if id == line["number"]:
-                    temp_favourites.append(line)
-
-        with open("favourites.json", 'w') as file:
-            json.dump(temp_favourites, file, indent=2, ensure_ascii=False)
+        with open("favourites.json", 'w', encoding="utf-8") as file:
+            json.dump(temp_favourites, file)
 
     def remove_vacancy(self, id):
         temp_favourites = []
