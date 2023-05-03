@@ -14,9 +14,14 @@ class JSONSaver(VacancyStorage):
         for line in new_list:
             if id == line["number"]:
                 temp_favourites.append(line)
+        with open("favourites.json", 'r', encoding="utf-8") as file:
+            data_new = json.loads(file.read())
+            for line in data_new:
+                temp_favourites.append(line)
 
         with open("favourites.json", 'w', encoding="utf-8") as file:
-            json.dump(temp_favourites, file)
+            json.dump(temp_favourites, file, ensure_ascii=False)
+        print(f"Вакансия {id} добавлена")
 
     def remove_vacancy(self, id):
         temp_favourites = []
@@ -29,6 +34,7 @@ class JSONSaver(VacancyStorage):
 
         with open("favourites.json", 'w') as file:
             json.dump(temp_favourites, file, indent=2, ensure_ascii=False)
+        print(f"Вакансия {id} удалена")
 
     def clean_file_favourites(self):
         """очистка файла (полная с избраными вакансиями"""
