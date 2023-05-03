@@ -30,8 +30,8 @@ def interact_with_user():
         print("1 - Загрузить свежую информацию с hh.ru")
         print("2 - Загрузить свежую информацию с superjob.ru")
         print("3 - просмотр файла с избраными вакансиями")
-        print("4 - вывод ваканисий с hh в упрошенном виде с сортировкой ")
-        print("5 - вывод ваканисий с superjob в упрошенном виде с сортировкой ")
+        print("4 - вывод ваканисий в упрошенном виде с сортировкой(настраемой) ")
+        print("5 - ")
         print("7 - очистка файла (полная с избранными вакансиями)")
         print("8 - Просмотр файла загрузки с API superjob, формат json (служебная функция)")
         print("9 - Просмотр файла загрузки с API superjob, формат json (служебная функция)")
@@ -57,15 +57,10 @@ def interact_with_user():
 
         elif choice == "4":
 
-            vacancy.read_file_favourites('hh.json')
-            vacancy.list_of_vacancy_hh()
-            print(vacancy.sorting_hh())
 
-        elif choice == "5":
+            vacancy.list_of_vacancy()
+            print(vacancy.sorting())
 
-            vacancy.read_file_favourites('sj.json')
-            vacancy.list_of_vacancy_sj()
-            print(vacancy.sorting_sj())
 
 
 
