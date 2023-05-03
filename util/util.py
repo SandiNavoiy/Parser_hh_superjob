@@ -55,7 +55,7 @@ def interact_with_user():
 
         elif choice == "3":
 
-            vacancy.read_file_favourites('favourites.json')
+            print(vacancy.read_file_favourites('favourites.json'))
 
         elif choice == "4":
 
@@ -64,13 +64,13 @@ def interact_with_user():
 
         elif choice == "5":
             l = vacancy.list_of_vacancy()
-            id_add = input("введите id номер вакансии для добавление в избраное(для просмотра id выполните действие 4)")
+            id_add = int(input("введите id номер вакансии для добавление в избраное(для просмотра id выполните действие 4)"))
             json_saver.add_vacancy(id_add, l)
 
 
         elif choice == "6":
             vacancy.list_of_vacancy()
-            id_del = input("введите id номер вакансии для удаления из избраного (для просмотра id выполните действие 3)")
+            id_del = int(input("введите id номер вакансии для удаления из избраного (для просмотра id выполните действие 3)"))
             json_saver.remove_vacancy(id_del)
 
 
