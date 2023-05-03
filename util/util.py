@@ -31,7 +31,8 @@ def interact_with_user():
         print("2 - Загрузить свежую информацию с superjob.ru")
         print("3 - просмотр файла с избраными вакансиями")
         print("4 - вывод ваканисий в упрошенном виде с сортировкой(настраемой) ")
-        print("5 - ")
+        print("5 - добавление вакансии в избраное")
+        print("6 - удаление вакансии из избраного")
         print("7 - очистка файла (полная с избранными вакансиями)")
         print("8 - Просмотр файла загрузки с API superjob, формат json (служебная функция)")
         print("9 - Просмотр файла загрузки с API superjob, формат json (служебная функция)")
@@ -57,10 +58,19 @@ def interact_with_user():
 
         elif choice == "4":
 
-
             vacancy.list_of_vacancy()
             print(vacancy.sorting())
 
+        elif choice == "5":
+            vacancy.list_of_vacancy()
+            id_add = input("введите id номер вакансии для добавление в избраное(для просмотра id выполните действие 4)")
+            json_saver.add_vacancy(id_add)
+
+
+        elif choice == "6":
+            vacancy.list_of_vacancy()
+            id_del = input("введите id номер вакансии для удаления из избраного (для просмотра id выполните действие 3)")
+            json_saver.remove_vacancy(id_del)
 
 
 

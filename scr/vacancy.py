@@ -95,6 +95,7 @@ class Vacancy(VacancyStorage):
         print("2 - сортировка по городу")
         print("3 - сортировка по названию вакансии")
         print("4 - сортировка по опыту")
+        print("5 - сортировка по урл")
         print("Любое другое значение ввода- сортировка по порядковому номеру")
         choice = input("Введите значение---")
         if choice == "1":
@@ -105,6 +106,8 @@ class Vacancy(VacancyStorage):
             self.new_list_sort = sorted(self.new_list, key=lambda d: d['name'], reverse=False)
         elif choice == "4":
             self.new_list_sort = sorted(self.new_list, key=lambda d: d['experience'], reverse=True)
+        elif choice == "5":
+            self.new_list_sort = sorted(self.new_list, key=lambda d: d['url'], reverse=True)
         else:
             self.new_list_sort = self.new_list
 
