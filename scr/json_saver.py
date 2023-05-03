@@ -9,7 +9,7 @@ class JSONSaver(JsonSave):
         self.filename = filename
 
     def add_vacancy(self, id, new_list):
-        """метод добавления вакансии в избраное"""
+        """Метод добавления вакансии в избраное"""
         temp_favourites = []
         for line in new_list:
             if id == line["number"]:
@@ -28,6 +28,7 @@ class JSONSaver(JsonSave):
         print(f"Вакансия {id} добавлена")
 
     def remove_vacancy(self, id):
+        """Метод удаления вакансии"""
         temp_favourites = []
         with open("favor.json", 'r', encoding="utf8") as file:
             data_new = json.loads(file.read())
@@ -41,7 +42,7 @@ class JSONSaver(JsonSave):
         print(f"Вакансия {id} удалена")
 
     def clean_file_favourites(self):
-        """очистка файла (полная с избраными вакансиями"""
+        """Очистка файла (полная с избранными вакансиями)"""
         with open("favor.json", 'w', encoding="utf8"):
             print("--------------")
             print("файл очищен")

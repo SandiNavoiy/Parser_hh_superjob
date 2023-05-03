@@ -31,6 +31,7 @@ class VacancyStorage(ABC):
     def top(self, vacancy):
         pass
 class JsonSave(ABC):
+    """ Абстрактный класс работы с файлами json"""
     @abstractmethod
     def add_vacancy(self):
         pass

@@ -28,6 +28,7 @@ class Vacancy(VacancyStorage):
         return self.f
 
     def list_of_vacancy(self):
+        """Метод сведения информации из 2-х json файлов в один список словарей"""
         number = 1
         self.new_list = []
         with open('hh.json', 'r', encoding="utf8") as file:
@@ -86,7 +87,7 @@ class Vacancy(VacancyStorage):
         return self.new_list
 
     def sorting(self):
-        """Сортировка hh"""
+        """Метод сортировки"""
         print("Выберите действие:")
         print("1 - сортировка по з/п, если з/п не указана то программа выводит ноль!")
         print("2 - сортировка по городу")
