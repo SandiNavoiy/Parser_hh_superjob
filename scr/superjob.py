@@ -15,6 +15,7 @@ class SuperJobAPI(Employer):
     def get_vacancies(self, keyword):
         catalogue_id = 48  # id каталога "Разработка, программирование"
         #town_id = 4  # id города Москва
+
         vacancies_count = 100  # api запрещает запрашивать больше 100 вакансий
         self.keyword = keyword  # ключивое слово
         params = {'catalogues': catalogue_id, 'count': vacancies_count, 'keyword': self.keyword}
