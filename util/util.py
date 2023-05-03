@@ -55,7 +55,7 @@ def interact_with_user():
 
         elif choice == "3":
 
-            printing(vacancy.read_file_favourites('favourites.json'))
+            printing(vacancy.read_file_favourites('favor.json'))
 
         elif choice == "4":
 
