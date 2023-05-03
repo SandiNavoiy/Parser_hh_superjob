@@ -4,7 +4,7 @@ from scr.abc import VacancyStorage
 
 
 class Vacancy(VacancyStorage):
-    def __init__(self, job_title: str = None, url_job: str = None, payment_range = None, requirements: str = None):
+    def __init__(self, job_title: str = None, url_job: str = None, payment_range=None, requirements: str = None):
         if isinstance(job_title, str):
             raise ValueError('Параметр "job_title" должен быть строкой')
         self.job_title = job_title  # описание проффесии запроса
@@ -26,7 +26,6 @@ class Vacancy(VacancyStorage):
         with open(file_name, 'r', encoding="utf8") as file:
             self.f = file.read()
         return self.f
-
 
     def list_of_vacancy(self):
         number = 1
@@ -60,7 +59,6 @@ class Vacancy(VacancyStorage):
         with open('sj.json', 'r', encoding="utf8") as file:
             data_new_sj = json.loads(file.read())
 
-
             for vacancy in data_new_sj["objects"]:
                 try:
                     self.new_list.append({
@@ -86,7 +84,6 @@ class Vacancy(VacancyStorage):
                     number += 1
 
         return self.new_list
-
 
     def sorting(self):
         """сортировка hh"""
@@ -114,11 +111,11 @@ class Vacancy(VacancyStorage):
         return self.new_list_sort
 
     def top(self, top: int):
+        """выдача ТОП - количества вакансий"""
         n = 0
         self.new_top = []
         for i in self.new_list_sort:
-            if  n < top:
+            if n < top:
                 self.new_top.append(i)
                 n += 1
         return self.new_top
-
