@@ -6,6 +6,7 @@ from scr.json_saver import JSONSaver
 
 class Vacancy(VacancyStorage):
     """Класс работы с вакансиями"""
+
     def __init__(self):
         pass
 
@@ -114,7 +115,6 @@ class Vacancy(VacancyStorage):
                 n += 1
         return self.new_top
 
-
     def __gt__(self, other):
         """метод больше"""
         if isinstance(other, Vacancy):
@@ -143,7 +143,7 @@ class Vacancy(VacancyStorage):
                 return True
         return False
 
-    def get_vacancies(self,id):
+    def get_vacancies(self, id):
         """Вывод вакансии по id"""
         temp_vac = []
         for line in self.new_list:
@@ -151,15 +151,14 @@ class Vacancy(VacancyStorage):
                 temp_vac.append(line)
                 self.salary = line["salary_from"]
         return temp_vac
-    def get_salary(self,id):
+
+    def get_salary(self, id):
         """Вывод вакансии по id"""
 
         for line in self.new_list:
             if id == line["number"]:
                 self.salary = int(line["salary_from"])
         return self.salary
-
-
 
     def found(self, job_title: str, url_job: str, payment, requirements: str, city: str):
         """Метод поиска по ключевым словам"""
@@ -185,11 +184,7 @@ class Vacancy(VacancyStorage):
 
         temp_vac = []
         for i in self.new_list:
-            if self.job_title in i["name"] and  self.url_job in i["url"] and self.payment > i["salary_from"] and self.requirements in i["experience"] and self.city in i["city"]:
+            if self.job_title in i["name"] and self.url_job in i["url"] and self.payment > i[
+                "salary_from"] and self.requirements in i["experience"] and self.city in i["city"]:
                 temp_vac.append(i)
         return temp_vac
-
-
-
-
-

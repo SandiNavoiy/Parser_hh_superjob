@@ -6,6 +6,7 @@ from scr.abc import VacancyStorage, JsonSave
 
 class JSONSaver(JsonSave):
     """Класс сохранения вакансий в файл и его изменения"""
+
     def __init__(self, filename):
         self.filename = filename
 
@@ -15,9 +16,8 @@ class JSONSaver(JsonSave):
         for line in new_list:
             if id == line["number"]:
                 temp_favourites.append(line)
-                print(f"Вакансия {id} добавлена")
-            else:
-                print("Вакансия отсудствует в списке")
+
+
         try:
             with open(self.filename, 'r', encoding="utf-8") as file:
                 data_new = json.loads(file.read())

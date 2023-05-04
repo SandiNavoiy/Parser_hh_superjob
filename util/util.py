@@ -23,6 +23,7 @@ def interact_with_user():
     superjob_api = SuperJobAPI()
     vacancy = Vacancy()
     transform = Transform("favor.json")
+    vacancy.list_of_vacancy()
 
     while True:
         print("Выберите действие:")
@@ -40,41 +41,37 @@ def interact_with_user():
         print("12 - Вывод  избраного в формате xls")
         print("13 - Вывод  вакансии по id")
         print("14 - Поиск по вакансии по ключевым словам")
-        print("15 - Сравенение вакансий из избраного")
-        print("16 - -")
-        print("17 - Выйти")
+        print("15 - Сравенение вакансий по заработной плате")
+        print("16 - Выйти")
 
         choice = input("Введите значение---")
 
         if choice == "1":
             key_words = input("Введите ключевое слово поисков:   ")
-
-            hh_vacancies = hh_api.get_vacancies(key_words)
+            hh_api.get_vacancies(key_words)
+            vacancy.list_of_vacancy()
 
 
         elif choice == "2":
             key_words = input("Введите ключевое слово поисков:    ")
-            superjob_vacancies = superjob_api.get_vacancies(key_words)
+            superjob_api.get_vacancies(key_words)
+            vacancy.list_of_vacancy()
 
 
         elif choice == "3":
             Transform.printing(vacancy.read_file_favourites('favor.json'))
 
         elif choice == "4":
-            vacancy.list_of_vacancy()
             Transform.printing(vacancy.sorting())
 
         elif choice == "5":
             l = vacancy.list_of_vacancy()
-            id_add = int(
-                input("введите id номер вакансии для добавление в избранное(для просмотра id выполните действие 4)"))
-            json_saver.add_vacancy(id_add, l)
+            id_add = int(input("введите id номер вакансии для добавление в избранное(для просмотра id выполните действие 4)"))
+            json_saver.add_vacancy(id_add, vacancy.list_of_vacancy())
 
 
         elif choice == "6":
-            vacancy.list_of_vacancy()
-            id_del = int(
-                input("введите id номер вакансии для удаления из избранного (для просмотра id выполните действие 3)"))
+            id_del = int(input("введите id номер вакансии для удаления из избранного (для просмотра id выполните действие 3)"))
             json_saver.remove_vacancy(id_del)
 
 
@@ -96,7 +93,6 @@ def interact_with_user():
             except ValueError as e:
                 print(e)
             else:
-                vacancy.list_of_vacancy()
                 vacancy.sorting()
                 Transform.printing(vacancy.top(top))
         elif choice == "11":
@@ -112,7 +108,6 @@ def interact_with_user():
             except ValueError as e:
                 print(e)
             else:
-                vacancy.list_of_vacancy()
                 vac1 = vacancy.get_vacancies(id_vac)
                 print(vac1)
 
@@ -136,7 +131,6 @@ def interact_with_user():
             except ValueError as e:
                 print(e)
             else:
-                vacancy.list_of_vacancy()
                 vac1 = vacancy.get_salary(id_vac1)
                 vac2 = vacancy.get_salary(id_vac2)
                 print(vac1)
@@ -144,7 +138,7 @@ def interact_with_user():
                 comparison(vac1, vac2)
 
 
-        elif choice == "17":
+        elif choice == "16":
             print("--------------")
             print("Спасибо за обращение\n"
                   "До новых встреч!")
@@ -155,6 +149,7 @@ def interact_with_user():
         else:
             print("Введите правильное значение действий!!!!")
 
+
 def comparison(vac1, vac2):
     if vac1 > vac2:
         print("З/п первой вакансии больше")
@@ -164,7 +159,3 @@ def comparison(vac1, vac2):
         print("З/п первой вакансии меньше")
     elif vac1 < vac2:
         print("З/п первой вакансии меньше или равна")
-
-
-
-

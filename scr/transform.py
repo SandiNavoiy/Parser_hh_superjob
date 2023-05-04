@@ -9,7 +9,6 @@ class Transform:
     def __init__(self, file_name):
         self.file_name = file_name
 
-
     @staticmethod
     def printing(new_list):
         """Функция для построчного вывода списка"""
@@ -26,12 +25,7 @@ class Transform:
             file.write(json.dumps(data_new, ensure_ascii=False))
         print(f"файл перезаписан в формате txt")
 
-
     def json_to_xls(self):
         data = pd.read_json(self.file_name)
         data.to_excel("favor.xlsx", index=False)
         print("Файл xlsx выгружен")
-
-
-
-
