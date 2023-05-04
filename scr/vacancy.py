@@ -1,6 +1,7 @@
 import json
 
 from scr.abc import VacancyStorage
+from scr.json_saver import JSONSaver
 
 
 class Vacancy(VacancyStorage):
@@ -24,8 +25,12 @@ class Vacancy(VacancyStorage):
 
     def read_file_favourites(self, file_name):
         """Просмотр файла с избраными вакансиями"""
-        with open(file_name, 'r', encoding="utf8") as file:
-            self.f = json.loads(file.read())
+        try:
+            with open(file_name, 'r', encoding="utf8") as file:
+                self.f = json.loads(file.read())
+        except FileNotFoundError:
+            JSONSaver.clean_file_favourites()
+
         return self.f
 
     def list_of_vacancy(self):
