@@ -38,7 +38,7 @@ def interact_with_user():
         print("10 - Вывод  ТОП вакансий сортировкой(настраемой)")
         print("11 - Вывод  избраного в формате txt")
         print("12 - Вывод  избраного в формате xls")
-        print("13 - -")
+        print("13 - Вывод  вакансии по id")
         print("14 - -")
         print("15 - -")
         print("16 - -")
@@ -104,7 +104,16 @@ def interact_with_user():
         elif choice == "12":
             transform.json_to_xls()
         elif choice == "13":
-            pass
+            id_vac = int(input(" Введите номер вакансии"))
+            try:
+                if not isinstance(id_vac, int):
+                    raise ValueError('Параметр "top" должен быть числом')
+            except ValueError as e:
+                print(e)
+            else:
+                vacancy.list_of_vacancy()
+                vac1 = vacancy.get_vacancies(id_vac)
+                print(vac1)
 
         elif choice == "14":
             pass

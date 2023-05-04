@@ -149,3 +149,15 @@ class Vacancy(VacancyStorage):
             if int(self.salary) <= int(other.salary):
                 return True
         return False
+
+    def get_vacancies(self,id):
+        """Вывод вакансии по id"""
+        temp_vac = []
+        for line in self.new_list:
+            if id == line["number"]:
+                temp_vac.append(line)
+        return temp_vac
+
+
+
+
