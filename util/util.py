@@ -66,12 +66,12 @@ def interact_with_user():
 
         elif choice == "5":
             l = vacancy.list_of_vacancy()
-            id_add = int(input("введите id номер вакансии для добавление в избранное(для просмотра id выполните действие 4)"))
+            id_add = int(input("Введите id номер вакансии для добавление в избранное(для просмотра id выполните действие 4)"))
             json_saver.add_vacancy(id_add, vacancy.list_of_vacancy())
 
 
         elif choice == "6":
-            id_del = int(input("введите id номер вакансии для удаления из избранного (для просмотра id выполните действие 3)"))
+            id_del = int(input("Введите id номер вакансии для удаления из избранного (для просмотра id выполните действие 3)"))
             json_saver.remove_vacancy(id_del)
 
 
@@ -112,8 +112,8 @@ def interact_with_user():
                 print(vac1)
 
         elif choice == "14":
-            print("Введите параменты ")
-            job_title = input("Введите ключ к професии")
+            print("Введите параметры ")
+            job_title = input("Введите ключ к профессии")
             url_job = input("Введите ключ URL")
             payment = int(input("Введите уровень з/п"))
             requirements = input("Введите ключ к требованиям")

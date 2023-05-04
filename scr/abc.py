@@ -22,9 +22,9 @@ class VacancyStorage(ABC):
     def list_of_vacancy(self):
         pass
 
-    #@abstractmethod
-    #def get_vacancies(self, **kwargs):
-    #    pass
+    @abstractmethod
+    def get_vacancies(self, **kwargs):
+        pass
 
 
     @abstractmethod

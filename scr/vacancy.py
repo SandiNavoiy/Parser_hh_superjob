@@ -11,7 +11,7 @@ class Vacancy(VacancyStorage):
         pass
 
     def read_file_favourites(self, file_name):
-        """Просмотр файла с избраными вакансиями"""
+        """Просмотр файла с избранными вакансиями"""
         try:
             with open(file_name, 'r', encoding="utf8") as file:
                 self.f = json.loads(file.read())
@@ -116,28 +116,28 @@ class Vacancy(VacancyStorage):
         return self.new_top
 
     def __gt__(self, other):
-        """метод больше"""
+        """Метод больше"""
         if isinstance(other, Vacancy):
             if int(self.salary) > int(other.salary):
                 return True
         return False
 
     def __ge__(self, other):
-        """метод больше или равно"""
+        """Метод больше или равно"""
         if isinstance(other, Vacancy):
             if int(self.salary) >= int(other.salary):
                 return True
         return False
 
     def __lt__(self, other):
-        """метод меньше"""
+        """Метод меньше"""
         if isinstance(other, Vacancy):
             if int(self.salary) < int(other.salary):
                 return True
         return False
 
     def __le__(self, other):
-        """метод меньше или равно"""
+        """Метод меньше или равно"""
         if isinstance(other, Vacancy):
             if int(self.salary) <= int(other.salary):
                 return True
