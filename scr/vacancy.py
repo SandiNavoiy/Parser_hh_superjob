@@ -153,7 +153,7 @@ class Vacancy(VacancyStorage):
         return temp_vac
 
     def get_salary(self, id):
-        """Вывод вакансии по id"""
+        """Вывод з/п вакансии по id"""
 
         for line in self.new_list:
             if id == line["number"]:
