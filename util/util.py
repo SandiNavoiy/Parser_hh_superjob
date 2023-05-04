@@ -38,7 +38,11 @@ def interact_with_user():
         print("10 - Вывод  ТОП вакансий сортировкой(настраемой)")
         print("11 - Вывод  избраного в формате txt")
         print("12 - Вывод  избраного в формате xls")
-        print("13 - Выйти")
+        print("13 - -")
+        print("14 - -")
+        print("15 - -")
+        print("16 - -")
+        print("17 - Выйти")
 
         choice = input("Введите значение---")
 
@@ -99,8 +103,21 @@ def interact_with_user():
             transform.to_txt()
         elif choice == "12":
             transform.json_to_xls()
-
         elif choice == "13":
+            pass
+
+        elif choice == "14":
+            pass
+
+
+        elif choice == "15":
+            pass
+
+        elif choice == "16":
+            pass
+
+
+        elif choice == "17":
             print("--------------")
             print("Спасибо за обращение\n"
                   "До новых встреч!")
