@@ -108,16 +108,22 @@ def interact_with_user():
             else:
                 vacancy.sorting()
                 Transform.printing(vacancy.top(top))
+
         elif choice == "11":
             transform.to_txt()
+
         elif choice == "12":
             transform.json_to_xls()
 
         elif choice == "13":
             try:
                 id_vac = int(input(" Введите номер вакансии:  "))
+                if id_vac < 0 or id_vac > 201:
+                    raise NotID
             except ValueError as e:
                 print(f"{e} Параметр id_vac должен быть целым числом")
+            except NotID:
+                print(NotID())
             else:
                 vac1 = vacancy.get_vacancies(id_vac)
                 print(vac1)
