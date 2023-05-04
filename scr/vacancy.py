@@ -6,22 +6,8 @@ from scr.json_saver import JSONSaver
 
 class Vacancy(VacancyStorage):
     """Класс работы с вакансиями"""
-    def __init__(self, job_title: str = None, url_job: str = None, payment_range=None, requirements: str = None):
-        if isinstance(job_title, str):
-            raise ValueError('Параметр "job_title" должен быть строкой')
-        self.job_title = job_title  # описание проффесии запроса
-
-        if isinstance(url_job, str):
-            raise ValueError('Параметр "url_job" должен быть строкой')
-        self.url_job = url_job  # урл запроса
-
-        if isinstance(payment_range, str):
-            raise ValueError('Параметр "payment_range" должен быть строкой')
-        self.payment_range = payment_range  # уровень заработной платы(диапазон)
-
-        if isinstance(requirements, str):
-            raise ValueError('Параметр "requirements" должен быть строкой')
-        self.requirements = requirements  # требования
+    def __init__(self):
+        pass
 
     def read_file_favourites(self, file_name):
         """Просмотр файла с избраными вакансиями"""
@@ -73,8 +59,8 @@ class Vacancy(VacancyStorage):
                         "name": vacancy["profession"],
                         "city": vacancy["client"]["town"]["title"],
                         "experience": vacancy["experience"]["title"],
-                        "salary_from": vacancy["payment_from"],
-                        "salary_to": vacancy["payment_to"],
+                        "salary_from": int(vacancy["payment_from"]),
+                        "salary_to": int(vacancy["payment_to"]),
                         "url": vacancy["link"]})
                     number += 1
 
@@ -84,8 +70,8 @@ class Vacancy(VacancyStorage):
                         'name': vacancy['profession'],
                         'city': 'Адрес не указан',
                         'experience': vacancy['experience']['title'],
-                        'salary_from': vacancy['payment_from'],
-                        'salary_to': vacancy['payment_to'],
+                        'salary_from': int(vacancy['payment_from']),
+                        'salary_to': int(vacancy['payment_to']),
                         'url': vacancy['link']
                     })
                     number += 1
@@ -163,8 +149,33 @@ class Vacancy(VacancyStorage):
                 temp_vac.append(line)
         return temp_vac
 
-    def found(self):
+    def found(self, job_title: str, url_job: str, payment, requirements: str, city: str):
+        """Метод поиска по ключевым словам"""
+        if not isinstance(job_title, str):
+            raise ValueError('Параметр "job_title" должен быть строкой')
+        self.job_title = job_title  # описание проффесии запроса
+
+        if not isinstance(url_job, str):
+            raise ValueError('Параметр "url_job" должен быть строкой')
+        self.url_job = url_job  # урл запроса
+
+        if not isinstance(payment, int):
+            raise ValueError('Параметр "payment_range" должен быть числом')
+        self.payment = payment  # уровень заработной платы
+
+        if not isinstance(requirements, str):
+            raise ValueError('Параметр "requirements" должен быть строкой')
+        self.requirements = requirements  # требования
+
+        if not isinstance(city, str):
+            raise ValueError('Параметр "requirements" должен быть строкой')
+        self.city = city  # город
+
         temp_vac = []
+        for i in self.new_list:
+            if self.job_title in i["name"] and  self.url_job in i["url"] and self.payment > i["salary_from"] and self.requirements in i["experience"] and self.city in i["city"]:
+                temp_vac.append(i)
+        return temp_vac
 
 
 

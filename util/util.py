@@ -18,7 +18,7 @@ def welcome():
 
 def interact_with_user():
     """Функция для взаимодействия с пользователем."""
-    json_saver = JSONSaver()
+    json_saver = JSONSaver("favor.json")
     hh_api = HeadHunterAPI()
     superjob_api = SuperJobAPI()
     vacancy = Vacancy()
@@ -39,7 +39,7 @@ def interact_with_user():
         print("11 - Вывод  избраного в формате txt")
         print("12 - Вывод  избраного в формате xls")
         print("13 - Вывод  вакансии по id")
-        print("14 - -")
+        print("14 - Поиск по вакансии по ключевым словам")
         print("15 - -")
         print("16 - -")
         print("17 - Выйти")
@@ -116,7 +116,14 @@ def interact_with_user():
                 print(vac1)
 
         elif choice == "14":
-            pass
+            print("Введите параменты ")
+            job_title = input("Введите ключ к професии")
+            url_job = input("Введите ключ URL")
+            payment = int(input("Введите уровень з/п"))
+            requirements = input("Введите ключ к требованиям")
+            city = input("Введите ключ к городу")
+            vacancy.list_of_vacancy()
+            print(vacancy.found(job_title, url_job, payment, requirements, city))
 
 
         elif choice == "15":
@@ -136,5 +143,10 @@ def interact_with_user():
 
         else:
             print("Введите правильное значение действий!!!!")
+
+def comparison(vac1, vac2):
+    pass
+    #if vac1
+
 
 
