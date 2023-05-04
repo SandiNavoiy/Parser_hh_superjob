@@ -119,25 +119,25 @@ class Vacancy(VacancyStorage):
 
     def __gt__(self, other) -> bool:
         if isinstance(other, Vacancy):
-            if int(self.salary) > int(other.salary):
+            if int(self.salary_from) > int(other.salary_from):
                 return True
         return False
 
     def __ge__(self, other) -> bool:
         if isinstance(other, Vacancy):
-            if int(self.salary) >= int(other.salary):
+            if int(self.salary_from) >= int(other.salary_from):
                 return True
         return False
 
     def __lt__(self, other) -> bool:
         if isinstance(other, Vacancy):
-            if int(self.salary) < int(other.salary):
+            if int(self.salary_from) < int(other.salary_from):
                 return True
         return False
 
     def __le__(self, other) -> bool:
         if isinstance(other, Vacancy):
-            if int(self.salary) <= int(other.salary):
+            if int(self.salary_from) <= int(other.salary_from):
                 return True
         return False
 
