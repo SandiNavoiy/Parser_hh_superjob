@@ -2,6 +2,7 @@
 from scr.headhunter import HeadHunterAPI
 from scr.json_saver import JSONSaver
 from scr.superjob import SuperJobAPI
+from scr.transform import Transform
 from scr.vacancy import Vacancy
 
 
@@ -21,6 +22,7 @@ def interact_with_user():
     hh_api = HeadHunterAPI()
     superjob_api = SuperJobAPI()
     vacancy = Vacancy()
+    transform = Transform("favor.json")
 
     while True:
         print("Выберите действие:")
@@ -34,8 +36,8 @@ def interact_with_user():
         print("8 - Просмотр файла загрузки с API superjob, формат json (служебная функция)")
         print("9 - Просмотр файла загрузки с API superjob, формат json (служебная функция)")
         print("10 - Вывод  ТОП вакансий сортировкой(настраемой)")
-        print("11 - Вывод  ТОП вакансий сортировкой(настраемой)")
-        print("12 - Вывод  ТОП вакансий сортировкой(настраемой)")
+        print("11 - Вывод  избраного в формате txt")
+        print("12 - Вывод  избраного в формате xls")
         print("13 - Выйти")
 
         choice = input("Введите значение---")
@@ -52,11 +54,11 @@ def interact_with_user():
 
 
         elif choice == "3":
-            printing(vacancy.read_file_favourites('favor.json'))
+            Transform.printing(vacancy.read_file_favourites('favor.json'))
 
         elif choice == "4":
             vacancy.list_of_vacancy()
-            printing(vacancy.sorting())
+            Transform.printing(vacancy.sorting())
 
         elif choice == "5":
             l = vacancy.list_of_vacancy()
@@ -92,11 +94,11 @@ def interact_with_user():
             else:
                 vacancy.list_of_vacancy()
                 vacancy.sorting()
-                printing(vacancy.top(top))
+                Transform.printing(vacancy.top(top))
         elif choice == "11":
-            pass
+            transform.to_txt()
         elif choice == "12":
-            pass
+            transform.json_to_xls()
 
         elif choice == "13":
             print("--------------")
@@ -110,7 +112,3 @@ def interact_with_user():
             print("Введите правильное значение действий!!!!")
 
 
-def printing(new_list):
-    """Функция для построчного вывода списка"""
-    for i in new_list:
-        print(i)

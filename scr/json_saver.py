@@ -25,7 +25,7 @@ class JSONSaver(JsonSave):
                 temp_favourites.append(line)
 
         with open("favor.json", 'w', encoding="utf-8") as file:
-            json.dump(temp_favourites, file)
+            json.dump(temp_favourites, file, ensure_ascii=False)
         print(f"Вакансия {id} добавлена")
 
     def remove_vacancy(self, id):
