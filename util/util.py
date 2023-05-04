@@ -103,11 +103,12 @@ def interact_with_user():
             transform.to_txt()
         elif choice == "12":
             transform.json_to_xls()
+
         elif choice == "13":
             id_vac = int(input(" Введите номер вакансии"))
             try:
                 if not isinstance(id_vac, int):
-                    raise ValueError('Параметр "top" должен быть числом')
+                    raise ValueError('Параметр "id_vac" должен быть числом')
             except ValueError as e:
                 print(e)
             else:
@@ -127,10 +128,20 @@ def interact_with_user():
 
 
         elif choice == "15":
-            pass
-
-        elif choice == "16":
-            pass
+            id_vac1 = int(input(" Введите номер вакансии"))
+            id_vac2 = int(input(" Введите номер вакансии"))
+            try:
+                if not isinstance(id_vac1, int) and not isinstance(id_vac2, int):
+                    raise ValueError('Параметр "id_vac" должен быть числом')
+            except ValueError as e:
+                print(e)
+            else:
+                vacancy.list_of_vacancy()
+                vac1 = vacancy.get_salary(id_vac1)
+                vac2 = vacancy.get_salary(id_vac2)
+                print(vac1)
+                print(vac2)
+                comparison(vac1, vac2)
 
 
         elif choice == "17":
@@ -145,8 +156,15 @@ def interact_with_user():
             print("Введите правильное значение действий!!!!")
 
 def comparison(vac1, vac2):
-    pass
-    #if vac1
+    if vac1 > vac2:
+        print("З/п первой вакансии больше")
+    elif vac1 >= vac2:
+        print("З/п первой вакансии больше или равна")
+    elif vac1 < vac2:
+        print("З/п первой вакансии меньше")
+    elif vac1 < vac2:
+        print("З/п первой вакансии меньше или равна")
+
 
 
 

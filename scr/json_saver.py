@@ -17,12 +17,14 @@ class JSONSaver(JsonSave):
                 temp_favourites.append(line)
                 print(f"Вакансия {id} добавлена")
             else:
-                print("Вакания отсудствует в списке")
+                print("Вакансия отсудствует в списке")
         try:
             with open(self.filename, 'r', encoding="utf-8") as file:
                 data_new = json.loads(file.read())
         except JSONDecodeError:
             print("Файл избранных вакансий пустой")
+            with open(self.filename, 'w', encoding="utf8"):
+                pass
         else:
             for line in data_new:
                 temp_favourites.append(line)

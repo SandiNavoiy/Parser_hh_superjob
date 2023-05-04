@@ -114,30 +114,32 @@ class Vacancy(VacancyStorage):
                 n += 1
         return self.new_top
 
-    def get_vacancy(self):
-        pass
 
-    def __gt__(self, other) -> bool:
+    def __gt__(self, other):
+        """метод больше"""
         if isinstance(other, Vacancy):
-            if int(self.salary_from) > int(other.salary_from):
+            if int(self.salary) > int(other.salary):
                 return True
         return False
 
-    def __ge__(self, other) -> bool:
+    def __ge__(self, other):
+        """метод больше или равно"""
         if isinstance(other, Vacancy):
-            if int(self.salary_from) >= int(other.salary_from):
+            if int(self.salary) >= int(other.salary):
                 return True
         return False
 
-    def __lt__(self, other) -> bool:
+    def __lt__(self, other):
+        """метод меньше"""
         if isinstance(other, Vacancy):
-            if int(self.salary_from) < int(other.salary_from):
+            if int(self.salary) < int(other.salary):
                 return True
         return False
 
-    def __le__(self, other) -> bool:
+    def __le__(self, other):
+        """метод меньше или равно"""
         if isinstance(other, Vacancy):
-            if int(self.salary_from) <= int(other.salary_from):
+            if int(self.salary) <= int(other.salary):
                 return True
         return False
 
@@ -147,7 +149,17 @@ class Vacancy(VacancyStorage):
         for line in self.new_list:
             if id == line["number"]:
                 temp_vac.append(line)
+                self.salary = line["salary_from"]
         return temp_vac
+    def get_salary(self,id):
+        """Вывод вакансии по id"""
+
+        for line in self.new_list:
+            if id == line["number"]:
+                self.salary = int(line["salary_from"])
+        return self.salary
+
+
 
     def found(self, job_title: str, url_job: str, payment, requirements: str, city: str):
         """Метод поиска по ключевым словам"""
