@@ -3,7 +3,7 @@ from scr.headhunter import HeadHunterAPI
 from scr.json_saver import JSONSaver
 from scr.superjob import SuperJobAPI
 from scr.transform import Transform
-from scr.vacancy import Vacancy, NotID
+from scr.vacancy import Vacancy, NotID, NegativeSalary
 
 
 def welcome():
@@ -134,8 +134,13 @@ def interact_with_user():
             url_job = input("Введите ключ URL:  ")
             try:
                 payment = int(input("Введите уровень з/п:  "))
+                if payment < 0:
+                    raise NegativeSalary
             except ValueError as e:
                 print(f"{e} Параметр payment должен быть целым числом")
+                payment = 0
+            except NegativeSalary as e:
+                print(NegativeSalary())
                 payment = 0
             requirements = input("Введите ключ к требованиям:  ")
             city = input("Введите ключ к городу:  ")

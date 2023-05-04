@@ -199,3 +199,11 @@ class NotID(Exception):
 
     def __str__(self):
         return self.message
+
+class NegativeSalary(Exception):
+    """Класс исключений - отрицательная з/п"""
+    def __init__(self, *args, **kwargs):
+        self.message = args[0] if args else 'Залплата не может быть отрицательной.'
+
+    def __str__(self):
+        return self.message
