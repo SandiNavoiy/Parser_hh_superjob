@@ -53,3 +53,4 @@ class JSONSaver(JsonSave):
             print("--------------")
             print("файл очищен")
             print("--------------")
+

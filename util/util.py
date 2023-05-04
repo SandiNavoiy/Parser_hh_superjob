@@ -3,7 +3,7 @@ from scr.headhunter import HeadHunterAPI
 from scr.json_saver import JSONSaver
 from scr.superjob import SuperJobAPI
 from scr.transform import Transform
-from scr.vacancy import Vacancy
+from scr.vacancy import Vacancy, NotID
 
 
 def welcome():
@@ -65,16 +65,29 @@ def interact_with_user():
             Transform.printing(vacancy.sorting())
 
         elif choice == "5":
-            l = vacancy.list_of_vacancy()
-            id_add = int(
-                input("Введите id номер вакансии для добавление в избранное(для просмотра id выполните действие 4):  "))
-            json_saver.add_vacancy(id_add, vacancy.list_of_vacancy())
+            try:
+                id_add = int(input("Введите id номер вакансии для добавление в избранное(для просмотра id выполните действие 4):  "))
+                if id_add < 0 or id_add > 201:
+                    raise NotID
+            except ValueError as e:
+                print(f"{e} Параметр id_add должен быть целым числом")
+            except NotID:
+                print(NotID())
+            else:
+                json_saver.add_vacancy(id_add, vacancy.list_of_vacancy())
 
 
         elif choice == "6":
-            id_del = int(
-                input("Введите id номер вакансии для удаления из избранного (для просмотра id выполните действие 3): "))
-            json_saver.remove_vacancy(id_del)
+            try:
+                id_del = int(input("Введите id номер вакансии для удаления из избранного (для просмотра id выполните действие 3): "))
+                if id_del < 0 or id_del > 201:
+                    raise NotID
+            except ValueError as e:
+                print(f"{e} Параметр id_del должен быть целым числом")
+            except NotID:
+                print(NotID())
+            else:
+                json_saver.remove_vacancy(id_del)
 
 
         elif choice == "7":

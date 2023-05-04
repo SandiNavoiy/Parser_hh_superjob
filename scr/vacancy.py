@@ -191,3 +191,11 @@ class Vacancy(VacancyStorage):
             return "Не найдено вакансий по заданным критериям"
 
         return temp_vac
+
+class NotID(Exception):
+    """Класс исключений"""
+    def __init__(self, *args, **kwargs):
+        self.message = args[0] if args else 'Нет ID в списке.'
+
+    def __str__(self):
+        return self.message
