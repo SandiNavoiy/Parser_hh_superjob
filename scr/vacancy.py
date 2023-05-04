@@ -158,6 +158,10 @@ class Vacancy(VacancyStorage):
                 temp_vac.append(line)
         return temp_vac
 
+    def found(self):
+        temp_vac = []
+
+
 
 
 
