@@ -6,6 +6,7 @@ import os.path
 from scr.transform import Transform
 @pytest.fixture
 def test_json_file():
+    """Фикстура для тестов"""
     data = [
         {"title": "Software Engineer", "location": "San Francisco"},
         {"title": "Data Scientist", "location": "New York"},
@@ -19,6 +20,7 @@ def test_json_file():
 
 
 def test_to_txt(test_json_file):
+    """Тест для метода test_to_txt класса Transform"""
     file_name = "favor.txt"
     t = Transform(test_json_file)
     t.to_txt()
@@ -30,6 +32,7 @@ def test_to_txt(test_json_file):
 
 
 def test_json_to_xls(test_json_file):
+    """Тест для метода test_json_to_xls класса Transform"""
     file_name = "favor.xlsx"
     t = Transform(test_json_file)
     t.json_to_xls()

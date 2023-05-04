@@ -149,7 +149,6 @@ class Vacancy(VacancyStorage):
         for line in self.new_list:
             if id == line["number"]:
                 temp_vac.append(line)
-                self.salary = line["salary_from"]
         return temp_vac
 
     def get_salary(self, id):
