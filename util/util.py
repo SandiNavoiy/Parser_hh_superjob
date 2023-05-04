@@ -151,9 +151,15 @@ def interact_with_user():
             try:
                 id_vac1 = int(input(" Введите номер вакансии"))
                 id_vac2 = int(input(" Введите номер вакансии"))
+                if id_vac1 < 0 or id_vac1 > 201:
+                    raise NotID
+                if id_vac2 < 0 or id_vac2 > 201:
+                    raise NotID
 
             except ValueError as e:
                 print(f"{e} Параметр id_vac1, id_vac1 должны быть целыми числами")
+            except NotID:
+                print(NotID())
             else:
                 vac1 = vacancy.get_salary(id_vac1)
                 vac2 = vacancy.get_salary(id_vac2)
