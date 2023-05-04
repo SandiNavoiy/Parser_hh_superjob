@@ -187,4 +187,8 @@ class Vacancy(VacancyStorage):
             if self.job_title in i["name"] and self.url_job in i["url"] and self.payment > i[
                 "salary_from"] and self.requirements in i["experience"] and self.city in i["city"]:
                 temp_vac.append(i)
+
+        if not temp_vac:
+            return "Не найдено вакансий по заданным критериям"
+
         return temp_vac

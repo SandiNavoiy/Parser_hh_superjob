@@ -1,7 +1,7 @@
 import json
 from json import JSONDecodeError
 
-from scr.abc import VacancyStorage, JsonSave
+from scr.abc import JsonSave
 
 
 class JSONSaver(JsonSave):
