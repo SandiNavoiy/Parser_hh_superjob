@@ -24,8 +24,14 @@ class Vacancy(VacancyStorage):
         """Метод сведения информации из 2-х json файлов в один список словарей"""
         number = 1
         self.new_list = []
-        with open('hh.json', 'r', encoding="utf8") as file:
-            data_new_hh = json.loads(file.read())
+        try:
+            with open('hh.json', 'r', encoding="utf8") as file:
+                data_new_hh = json.loads(file.read())
+        except FileNotFoundError:
+            print("нет такого файла, создаем пустой")
+            with open('hh.json', 'w', encoding="utf8") as file:
+                pass
+        else:
             for vacancy in data_new_hh["items"]:
                 try:
                     self.new_list.append({
@@ -50,9 +56,14 @@ class Vacancy(VacancyStorage):
                         "url": vacancy["alternate_url"]
                     })
                     number += 1
-        with open('sj.json', 'r', encoding="utf8") as file:
-            data_new_sj = json.loads(file.read())
-
+        try:
+            with open('sj.json', 'r', encoding="utf8") as file:
+                data_new_sj = json.loads(file.read())
+        except FileNotFoundError:
+            print("нет такого файла, создаем пустой")
+            with open('sj.json', 'w', encoding="utf8") as file:
+                pass
+        else:
             for vacancy in data_new_sj["objects"]:
                 try:
                     self.new_list.append({
