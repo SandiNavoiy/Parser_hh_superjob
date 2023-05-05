@@ -1,6 +1,6 @@
+# Реализация класса Vacancy
 import json
 from json import JSONDecodeError
-
 from scr.abc import VacancyStorage
 from scr.json_saver import JSONSaver
 
@@ -9,31 +9,37 @@ class Vacancy(VacancyStorage):
     """Класс работы с вакансиями"""
 
     def __init__(self):
+        """Метод инициации"""
+        # В примере реализована инициация объекта значениями, но мне удобнее реализовывать это в методах
         pass
 
     def read_file_favourites(self, file_name):
         """Просмотр файла с избранными вакансиями"""
+        # Обработка исключения в случае отсутствия файла
         try:
             with open(file_name, 'r', encoding="utf8") as file:
                 self.f = json.loads(file.read())
         except FileNotFoundError:
             JSONSaver.clean_file_favourites()
-
         return self.f
 
     def list_of_vacancy(self):
         """Метод сведения информации из 2-х json файлов в один список словарей"""
-        number = 1
-        self.new_list = []
+        number = 1  # Счетчик
+        self.new_list = []  # Пустой новый список
+        # Отработка исключения отсудствия файла
+        # или если он кривого формата кодировки(как еще воевать с Win я не знаю!
         try:
             with open('hh.json', 'r', encoding="utf8") as file:
                 data_new_hh = json.loads(file.read())
         except (FileNotFoundError, JSONDecodeError):
-            print("нет такого файла, создаем пустой")
+            print("нет такого файла или он битый, создаем пустой")
             with open('hh.json', 'w', encoding="utf8") as file:
                 pass
         else:
             for vacancy in data_new_hh["items"]:
+                # Записываем в новый список значения взятые из json с существенными сокращениями,
+                # исключение реализуется в случае отсудствия данных по з/п
                 try:
                     self.new_list.append({
                         "number": number,
@@ -57,14 +63,18 @@ class Vacancy(VacancyStorage):
                         "url": vacancy["alternate_url"]
                     })
                     number += 1
+        # Отработка исключения отсудствия файла
+        # или если он кривого формата кодировки(как еще воевать с Win я не знаю!
         try:
             with open('sj.json', 'r', encoding="utf8") as file:
                 data_new_sj = json.loads(file.read())
         except (FileNotFoundError, JSONDecodeError):
-            print("нет такого файла, создаем пустой")
+            print("нет такого файла или он битый, создаем пустой")
             with open('sj.json', 'w', encoding="utf8") as file:
                 pass
         else:
+            # Записываем в новый список значения взятые из json с существенными сокращениями,
+            # исключение реализуется в случае отсудствие данных адреса
             for vacancy in data_new_sj["objects"]:
                 try:
                     self.new_list.append({
@@ -101,6 +111,7 @@ class Vacancy(VacancyStorage):
         print("5 - сортировка по урл")
         print("Любое другое значение ввода- сортировка по порядковому номеру")
         choice = input("Введите значение---")
+        # Сортируем лямбда функцией
         if choice == "1":
             self.new_list_sort = sorted(self.new_list, key=lambda d: d['salary_from'], reverse=True)
         elif choice == "2":
@@ -118,38 +129,41 @@ class Vacancy(VacancyStorage):
 
     def top(self, top: int):
         """Выдача ТОП - количества вакансий"""
-        n = 0
+        n = 0  # Счетчик
         self.new_top = []
         for i in self.new_list_sort:
-
             if n < top:
                 self.new_top.append(i)
                 n += 1
         return self.new_top
 
     def __gt__(self, other):
-        """Метод больше"""
+        """Дандер метод больше"""
+        # Валидация
         if isinstance(other, Vacancy):
             if int(self.salary) > int(other.salary):
                 return True
         return False
 
     def __ge__(self, other):
-        """Метод больше или равно"""
+        """Дандер метод больше или равно"""
+        # Валидация
         if isinstance(other, Vacancy):
             if int(self.salary) >= int(other.salary):
                 return True
         return False
 
     def __lt__(self, other):
-        """Метод меньше"""
+        """Дандер метод меньше"""
+        # Валидация
         if isinstance(other, Vacancy):
             if int(self.salary) < int(other.salary):
                 return True
         return False
 
     def __le__(self, other):
-        """Метод меньше или равно"""
+        """Дандер метод меньше или равно"""
+        # Валидация
         if isinstance(other, Vacancy):
             if int(self.salary) <= int(other.salary):
                 return True
@@ -165,7 +179,6 @@ class Vacancy(VacancyStorage):
 
     def get_salary(self, id):
         """Вывод з/п вакансии по id"""
-
         for line in self.new_list:
             if id == line["number"]:
                 self.salary = int(line["salary_from"])
@@ -176,29 +189,23 @@ class Vacancy(VacancyStorage):
         if not isinstance(job_title, str):
             raise ValueError('Параметр "job_title" должен быть строкой')
         self.job_title = job_title  # описание проффесии запроса
-
         if not isinstance(url_job, str):
             raise ValueError('Параметр "url_job" должен быть строкой')
         self.url_job = url_job  # урл запроса
-
         if not isinstance(payment, int):
             raise ValueError('Параметр "payment_range" должен быть числом')
         self.payment = payment  # уровень заработной платы
-
         if not isinstance(requirements, str):
             raise ValueError('Параметр "requirements" должен быть строкой')
         self.requirements = requirements  # требования
-
         if not isinstance(city, str):
             raise ValueError('Параметр "requirements" должен быть строкой')
         self.city = city  # город
-
         temp_vac = []
         for i in self.new_list:
             if self.job_title in i["name"] and self.url_job in i["url"] and self.payment > i[
                 "salary_from"] and self.requirements in i["experience"] and self.city in i["city"]:
                 temp_vac.append(i)
-
         if not temp_vac:
             return "Не найдено вакансий по заданным критериям"
 
@@ -206,7 +213,7 @@ class Vacancy(VacancyStorage):
 
 
 class NotID(Exception):
-    """Класс исключений"""
+    """Класс исключений - отсудствие ID"""
 
     def __init__(self, *args, **kwargs):
         self.message = args[0] if args else 'Нет ID в списке.'

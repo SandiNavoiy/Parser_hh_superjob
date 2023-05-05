@@ -1,6 +1,7 @@
 import json
 import pandas as pd
 
+
 class Transform:
     """Класс для вывода файла с избранными вакансиями в различных форматах """
 
@@ -9,22 +10,22 @@ class Transform:
 
     @staticmethod
     def printing(new_list):
-        """Функция для построчного вывода списка"""
+        """Метод для построчного вывода списка"""
         for i in new_list:
             print(i)
 
     def to_txt(self):
-        """Сохранение вакансий в txt формате"""
-
+        """Метод для сохранения вакансий в txt формате"""
+        # Открываем json файл на чтение данных
         with open(self.file_name, 'r', encoding="utf8") as file:
             data_new = json.loads(file.read())
-
+        # Записываем данные в файл txt
         with open("favor.txt", 'w', encoding="utf8") as file:
             file.write(json.dumps(data_new, ensure_ascii=False))
         print(f"файл перезаписан в формате txt")
 
     def json_to_xls(self):
-        """Сохранение вакансий в Excel формате"""
+        """Сохранение вакансий в Excel формате, при помощи библиотеки pandas """
         data = pd.read_json(self.file_name)
         data.to_excel("favor.xlsx", index=False)
         print("Файл xlsx выгружен")
