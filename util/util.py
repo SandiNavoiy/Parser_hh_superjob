@@ -66,7 +66,8 @@ def interact_with_user():
 
         elif choice == "5":
             try:
-                id_add = int(input("Введите id номер вакансии для добавление в избранное(для просмотра id выполните действие 4):  "))
+                id_add = int(input(
+                    "Введите id номер вакансии для добавление в избранное(для просмотра id выполните действие 4):  "))
                 if id_add < 0 or id_add > 201:
                     raise NotID
             except ValueError as e:
@@ -79,7 +80,8 @@ def interact_with_user():
 
         elif choice == "6":
             try:
-                id_del = int(input("Введите id номер вакансии для удаления из избранного (для просмотра id выполните действие 3): "))
+                id_del = int(input(
+                    "Введите id номер вакансии для удаления из избранного (для просмотра id выполните действие 3): "))
                 if id_del < 0 or id_del > 201:
                     raise NotID
             except ValueError as e:

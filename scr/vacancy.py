@@ -1,4 +1,5 @@
 import json
+from json import JSONDecodeError
 
 from scr.abc import VacancyStorage
 from scr.json_saver import JSONSaver
@@ -27,7 +28,7 @@ class Vacancy(VacancyStorage):
         try:
             with open('hh.json', 'r', encoding="utf8") as file:
                 data_new_hh = json.loads(file.read())
-        except FileNotFoundError:
+        except (FileNotFoundError, JSONDecodeError):
             print("нет такого файла, создаем пустой")
             with open('hh.json', 'w', encoding="utf8") as file:
                 pass
@@ -59,7 +60,7 @@ class Vacancy(VacancyStorage):
         try:
             with open('sj.json', 'r', encoding="utf8") as file:
                 data_new_sj = json.loads(file.read())
-        except FileNotFoundError:
+        except (FileNotFoundError, JSONDecodeError):
             print("нет такого файла, создаем пустой")
             with open('sj.json', 'w', encoding="utf8") as file:
                 pass
@@ -203,16 +204,20 @@ class Vacancy(VacancyStorage):
 
         return temp_vac
 
+
 class NotID(Exception):
     """Класс исключений"""
+
     def __init__(self, *args, **kwargs):
         self.message = args[0] if args else 'Нет ID в списке.'
 
     def __str__(self):
         return self.message
 
+
 class NegativeSalary(Exception):
     """Класс исключений - отрицательная з/п"""
+
     def __init__(self, *args, **kwargs):
         self.message = args[0] if args else 'Залплата не может быть отрицательной.'
 

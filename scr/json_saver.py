@@ -11,12 +11,11 @@ class JSONSaver(JsonSave):
         self.filename = filename
 
     def add_vacancy(self, id, new_list):
-        """Метод добавления вакансии в избраное"""
+        """Метод добавления вакансии в избранное"""
         temp_favourites = []
         for line in new_list:
             if id == line["number"]:
                 temp_favourites.append(line)
-
 
         try:
             with open(self.filename, 'r', encoding="utf-8") as file:
@@ -53,4 +52,3 @@ class JSONSaver(JsonSave):
             print("--------------")
             print("файл очищен")
             print("--------------")
-
