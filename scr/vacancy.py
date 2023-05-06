@@ -14,15 +14,15 @@ class Vacancy(VacancyStorage):
         pass
 
     def read_file_favourites(self, file_name):
-        """Просмотр файла с  вакансиями"""
+        """Просмотр файла с вакансиями"""
         # Обработка исключения в случае отсутствия файла
         try:
             with open(file_name, 'r', encoding="utf8") as file:
-                self.f = json.loads(file.read())
+                f = json.loads(file.read())
         except (FileNotFoundError, JSONDecodeError):
-            print("Файл поврежден или его нет. Создаем чистый")
-            JSONSaver.clean_file_favourites()
-        return self.f
+            print("Файл поврежден или его нет.")
+        else:
+            return f
 
     def list_of_vacancy(self):
         """Метод сведения информации из 2-х json файлов в один список словарей"""

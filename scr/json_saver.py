@@ -48,9 +48,9 @@ class JSONSaver(JsonSave):
             for line in data_new:
                 if id != line["number"]:
                     temp_favourites.append(line)
-        with open(self.filename, 'w') as file:
-            json.dump(temp_favourites, file, indent=2, ensure_ascii=False)
-        print(f"Вакансия {id} удалена")
+            with open(self.filename, 'w') as file:
+                json.dump(temp_favourites, file, indent=2, ensure_ascii=False)
+            print(f"Вакансия {id} отсудствут в избраном")
 
     def clean_file_favourites(self):
         """Очистка файла (полная с избранными вакансиями)"""

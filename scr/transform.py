@@ -1,6 +1,5 @@
 import json
 from json import JSONDecodeError
-
 import pandas as pd
 
 
@@ -23,7 +22,7 @@ class Transform:
             with open(self.file_name, 'r', encoding="utf8") as file:
                 data_new = json.loads(file.read())
         except (FileNotFoundError, JSONDecodeError):
-            print("нет такого файла или он битый, создайте его")
+            print("Нет файла для выгрузки или он битый, создайте его")
         # Записываем данные в файл txt
         else:
             with open("favor.txt", 'w', encoding="utf8") as file:
@@ -35,7 +34,7 @@ class Transform:
         try:
             data = pd.read_json(self.file_name)
         except (FileNotFoundError, JSONDecodeError):
-            print("нет такого файла или он битый, создайте его")
+            print("Нет файла для выгрузки или он битый, создайте его")
         else:
             data.to_excel("favor.xlsx", index=False)
             print("Файл xlsx выгружен")
