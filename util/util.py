@@ -36,15 +36,13 @@ def interact_with_user():
         print("5 - Добавление вакансии в избранное")
         print("6 - Удаление вакансии из избранного")
         print("7 - Очистка файла избранного (полная)")
-        print("8 - Просмотр файла загрузки с API superjob, формат json (служебная функция)")
-        print("9 - Просмотр файла загрузки с API superjob, формат json (служебная функция)")
-        print("10 - Вывод  ТОП вакансий сортировкой")
-        print("11 - Вывод  избранного в формате txt")
-        print("12 - Вывод  избранного в формате xls")
-        print("13 - Вывод  вакансии по id")
-        print("14 - Поиск по вакансии по ключевым словам")
-        print("15 - Сравнение вакансий по заработной плате")
-        print("16 - Выйти")
+        print("8 - Вывод  ТОП вакансий сортировкой")
+        print("9 - Вывод  избранного в формате txt")
+        print("10 - Вывод  избранного в формате xls")
+        print("11 - Вывод  вакансии по id")
+        print("12 - Поиск по вакансии по ключевым словам")
+        print("13 - Сравнение вакансий по заработной плате")
+        print("14 - Выйти")
         choice = input("Введите значение---")
         # Непосредствено работы меню выбора
         if choice == "1":
@@ -110,14 +108,6 @@ def interact_with_user():
             json_saver.clean_file_favourites()
 
         elif choice == "8":
-            # Просмотр файла загрузки с API superjob, формат json (служебная функция)
-            print(vacancy.read_file_favourites('hh.json'))
-
-        elif choice == "9":
-            # Просмотр файла загрузки с API superjob, формат json (служебная функция)
-            print(vacancy.read_file_favourites('sj.json'))
-
-        elif choice == "10":
             # Вывод ТОП вакансий сортировкой
             # Валидация числа ввода
             try:
@@ -128,15 +118,15 @@ def interact_with_user():
                 vacancy.sorting()
                 Transform.printing(vacancy.top(top))
 
-        elif choice == "11":
+        elif choice == "9":
             # Вывод избранного в формате txt
             transform.to_txt()
 
-        elif choice == "12":
+        elif choice == "10":
             # Вывод избранного в формате xls
             transform.json_to_xls()
 
-        elif choice == "13":
+        elif choice == "11":
             # Вывод вакансии по id
             # В связи с тем что выгруз с каждого сайта ограничен 100 вакансий,
             # суммарно не более 200 отсекаем неверные значения ввода специальным исключением
@@ -153,7 +143,7 @@ def interact_with_user():
                 vac1 = vacancy.get_vacancies(id_vac)
                 print(vac1)
 
-        elif choice == "14":
+        elif choice == "12":
             # Поиск по вакансии по ключевым словам
             print("Введите параметры")
             job_title = input("Введите ключ к профессии:  ")
@@ -176,7 +166,7 @@ def interact_with_user():
             city = input("Введите ключ к городу:  ")
             print(vacancy.found(job_title, url_job, payment, requirements, city))
 
-        elif choice == "15":
+        elif choice == "13":
             # Сравнение вакансий по заработной плате
             # В связи с тем что выгруз с каждого сайта ограничен 100 вакансий,
             # суммарно не более 200 отсекаем неверные значения ввода специальным исключением
@@ -198,7 +188,7 @@ def interact_with_user():
                 print(vac2)
                 comparison(vac1, vac2)
 
-        elif choice == "16":
+        elif choice == "14":
             # Выход
             print("--------------")
             print("Спасибо за обращение\n"

@@ -21,17 +21,17 @@ class JSONSaver(JsonSave):
         try:
             with open(self.filename, 'r', encoding="utf-8") as file:
                 data_new = json.loads(file.read())
-        except JSONDecodeError:
-            print("Файл избранных вакансий пустой")
+        except (FileNotFoundError, JSONDecodeError):
+            print("Файл избранных вакансий пустой или отсудствует")
             with open(self.filename, 'w', encoding="utf8"):
                 pass
         else:
             for line in data_new:
                 temp_favourites.append(line)
         # Записываем вакансию в файл
-        with open(self.filename, 'w', encoding="utf-8") as file:
-            json.dump(temp_favourites, file, ensure_ascii=False)
-        print(f"Вакансия {id} добавлена")
+            with open(self.filename, 'w', encoding="utf-8") as file:
+                json.dump(temp_favourites, file, ensure_ascii=False)
+            print(f"Вакансия {id} добавлена")
 
     def remove_vacancy(self, id):
         """Метод удаления вакансии, провевека наличия вакансии в принципе обходится самой реалиацией"""
@@ -39,8 +39,12 @@ class JSONSaver(JsonSave):
         # Идея в том, чтобы прогнать файл избраного и при нахождении того что нужно удалить
         # просто не добавлять его в новый временый список, который перезаписываем в файл избранного,
         # в принципе в таком варианте валидация ввода на наличия не имеет смысла
-        with open(self.filename, 'r', encoding="utf8") as file:
-            data_new = json.loads(file.read())
+        try:
+            with open(self.filename, 'r', encoding="utf8") as file:
+                data_new = json.loads(file.read())
+        except (FileNotFoundError, JSONDecodeError):
+            print("нет  файла  с избраными вакансиями или он битый, создайте его")
+        else:
             for line in data_new:
                 if id != line["number"]:
                     temp_favourites.append(line)

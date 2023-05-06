@@ -14,12 +14,13 @@ class Vacancy(VacancyStorage):
         pass
 
     def read_file_favourites(self, file_name):
-        """Просмотр файла с избранными вакансиями"""
+        """Просмотр файла с  вакансиями"""
         # Обработка исключения в случае отсутствия файла
         try:
             with open(file_name, 'r', encoding="utf8") as file:
                 self.f = json.loads(file.read())
-        except FileNotFoundError:
+        except (FileNotFoundError, JSONDecodeError):
+            print("Файл поврежден или его нет. Создаем чистый")
             JSONSaver.clean_file_favourites()
         return self.f
 
@@ -32,10 +33,12 @@ class Vacancy(VacancyStorage):
         try:
             with open('hh.json', 'r', encoding="utf8") as file:
                 data_new_hh = json.loads(file.read())
-        except (FileNotFoundError, JSONDecodeError):
-            print("нет такого файла или он битый, создаем пустой")
+        except JSONDecodeError:
+            print("Файл битый, создаем пустой")
             with open('hh.json', 'w', encoding="utf8") as file:
                 pass
+        except FileNotFoundError:
+            print("нет такого файла или он битый, проведите выгрузку информации с hh.ru")
         else:
             for vacancy in data_new_hh["items"]:
                 # Записываем в новый список значения взятые из json с существенными сокращениями,
@@ -68,10 +71,12 @@ class Vacancy(VacancyStorage):
         try:
             with open('sj.json', 'r', encoding="utf8") as file:
                 data_new_sj = json.loads(file.read())
-        except (FileNotFoundError, JSONDecodeError):
-            print("нет такого файла или он битый, создаем пустой")
+        except JSONDecodeError:
+            print("Файл битый, создаем пустой")
             with open('sj.json', 'w', encoding="utf8") as file:
                 pass
+        except FileNotFoundError:
+            print("нет такого файла или он битый, проведите выгрузку информации с superjob.ru")
         else:
             # Записываем в новый список значения взятые из json с существенными сокращениями,
             # исключение реализуется в случае отсудствие данных адреса
