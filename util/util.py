@@ -65,11 +65,11 @@ def interact_with_user():
 
         elif choice == "3":
             # Вывод файла с избранным
-            Transform.printing(vacancy.read_file_favourites('favor.json'))
+            transform.printing(vacancy.read_file_favourites('favor.json'))
 
         elif choice == "4":
             # Вывод вакансий в упрошенном виде с сортировкой
-            Transform.printing(vacancy.sorting())
+            transform.printing(vacancy.sorting())
 
         elif choice == "5":
             # Добавление вакансии в избранное
@@ -78,7 +78,7 @@ def interact_with_user():
                     "Введите id номер вакансии для добавление в избранное(для просмотра id выполните действие 4):  "))
                 # В связи с тем что выгруз с каждого сайта ограничен 100 вакансий,
                 # суммарно не более 200 отсекаем неверные значения ввода специальным исключением
-                if id_add < 0 or id_add > 201:
+                if id_add <= 0 or id_add > 201:
                     raise NotID
             # Валидация числа ввода
             except ValueError as e:
@@ -95,7 +95,7 @@ def interact_with_user():
                     "Введите id номер вакансии для удаления из избранного (для просмотра id выполните действие 3): "))
                 # В связи с тем что выгруз с каждого сайта ограничен 100 вакансий,
                 # суммарно не более 200 отсекаем неверные значения ввода специальным исключением
-                if id_del < 0 or id_del > 201:
+                if id_del <= 0 or id_del > 201:
                     raise NotID
             # Валидация числа ввода
             except ValueError as e:
@@ -118,7 +118,7 @@ def interact_with_user():
                 print(f"{e} Параметр top должен быть целым числом")
             else:
                 vacancy.sorting()
-                Transform.printing(vacancy.top(top))
+                transform.printing(vacancy.top(top))
 
         elif choice == "9":
             # Вывод избранного в формате txt
@@ -134,7 +134,7 @@ def interact_with_user():
             # суммарно не более 200 отсекаем неверные значения ввода специальным исключением
             try:
                 id_vac = int(input(" Введите номер вакансии:  "))
-                if id_vac < 0 or id_vac > 201:
+                if id_vac <= 0 or id_vac > 201:
                     raise NotID
             # Валидация числа ввода
             except ValueError as e:
@@ -144,7 +144,7 @@ def interact_with_user():
             else:
                 vac1 = vacancy.get_vacancies(id_vac)
                 if vac1 == []:
-                    print("Вакансии не закружены в программу")
+                    print("Вакансии не загружены в программу")
                 else:
                     print(vac1)
 
@@ -178,20 +178,25 @@ def interact_with_user():
             try:
                 id_vac1 = int(input(" Введите номер вакансии"))
                 id_vac2 = int(input(" Введите номер вакансии"))
-                if id_vac1 < 0 or id_vac1 > 201:
+                if id_vac1 <= 0 or id_vac1 > 201:
                     raise NotID
-                if id_vac2 < 0 or id_vac2 > 201:
+                if id_vac2 <= 0 or id_vac2 > 201:
                     raise NotID
             except ValueError as e:
                 print(f"{e} Параметр id_vac1, id_vac1 должны быть целыми числами")
             except NotID:
                 print(NotID())
             else:
-                vac1 = vacancy.get_salary(id_vac1)
-                vac2 = vacancy.get_salary(id_vac2)
-                print(vac1)
-                print(vac2)
-                comparison(vac1, vac2)
+                try:
+                    vac1 = vacancy.get_salary(id_vac1)
+                    vac2 = vacancy.get_salary(id_vac2)
+                except AttributeError:
+                    print("Данные не загружены")
+                else:
+                    print(f" з/п первой вакансии = {vac1}")
+                    print(f" з/п второй вакансии = {vac1}")
+                # Дополнительная функция сравнения
+                    comparison(vac1, vac2)
 
         elif choice == "14":
             # Выход

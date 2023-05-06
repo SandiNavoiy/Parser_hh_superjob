@@ -12,8 +12,14 @@ class Transform:
     @staticmethod
     def printing(new_list):
         """Метод для построчного вывода списка"""
-        for i in new_list:
-            print(i)
+        try:
+            if not isinstance(new_list, list):
+                raise TypeError
+        except TypeError:
+            print('')
+        else:
+            for i in new_list:
+                print(i)
 
     def to_txt(self):
         """Метод для сохранения вакансий в txt формате"""

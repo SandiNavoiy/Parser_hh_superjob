@@ -103,8 +103,11 @@ class Vacancy(VacancyStorage):
                         'url': vacancy['link']
                     })
                     number += 1
+        if self.new_list == []:
+            print("Вакансии с сайта не загружены")
+        else:
+            return self.new_list
 
-        return self.new_list
 
     def sorting(self):
         """Метод сортировки"""
@@ -129,8 +132,10 @@ class Vacancy(VacancyStorage):
             self.new_list_sort = sorted(self.new_list, key=lambda d: d['url'], reverse=True)
         else:
             self.new_list_sort = self.new_list
-
-        return self.new_list_sort
+        if self.new_list_sort == []:
+            print("Вакансии с сайта не загружены")
+        else:
+            return self.new_list_sort
 
     def top(self, top: int):
         """Выдача ТОП - количества вакансий"""
@@ -221,7 +226,7 @@ class NotID(Exception):
     """Класс исключений - отсудствие ID"""
 
     def __init__(self, *args, **kwargs):
-        self.message = args[0] if args else 'Нет ID в списке.'
+        self.message = args[0] if args else 'Нет ID в списке. Валидные значения от 1 до 200'
 
     def __str__(self):
         return self.message
