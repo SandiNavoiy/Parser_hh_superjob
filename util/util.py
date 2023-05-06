@@ -114,8 +114,13 @@ def interact_with_user():
             # Валидация числа ввода
             try:
                 top = int(input(" Введите количество вакансий для вывода:  "))
+                if top <= 0 or top > 201:
+                    raise NotID
             except ValueError as e:
                 print(f"{e} Параметр top должен быть целым числом")
+            except NotID:
+                print("Валидные значения от 1 до 200")
+
             else:
                 vacancy.sorting()
                 transform.printing(vacancy.top(top))

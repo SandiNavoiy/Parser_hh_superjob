@@ -19,8 +19,10 @@ class Vacancy(VacancyStorage):
         try:
             with open(file_name, 'r', encoding="utf8") as file:
                 f = json.loads(file.read())
-        except (FileNotFoundError, JSONDecodeError):
-            print("Файл поврежден или его нет.")
+        except FileNotFoundError:
+            print("Файла нет")
+        except JSONDecodeError:
+            print("Файл поврежден")
         else:
             return f
 
@@ -38,7 +40,7 @@ class Vacancy(VacancyStorage):
             with open('hh.json', 'w', encoding="utf8") as file:
                 pass
         except FileNotFoundError:
-            print("нет такого файла или он битый, проведите выгрузку информации с hh.ru")
+            print("Внимание, нет информации  с hh.ru, проведите выгрузку информации")
         else:
             for vacancy in data_new_hh["items"]:
                 # Записываем в новый список значения взятые из json с существенными сокращениями,
@@ -76,7 +78,7 @@ class Vacancy(VacancyStorage):
             with open('sj.json', 'w', encoding="utf8") as file:
                 pass
         except FileNotFoundError:
-            print("нет такого файла или он битый, проведите выгрузку информации с superjob.ru")
+            print("Внимание, нет информации  с superjob.ru, проведите выгрузку информации")
         else:
             # Записываем в новый список значения взятые из json с существенными сокращениями,
             # исключение реализуется в случае отсудствие данных адреса
