@@ -17,7 +17,7 @@ class Vacancy(VacancyStorage):
         """Просмотр файла с вакансиями"""
         # Обработка исключения в случае отсутствия файла
         try:
-            with open(file_name, 'r', encoding="utf8") as file:
+            with open(file_name, 'r', encoding="utf-8") as file:
                 f = json.loads(file.read())
         except FileNotFoundError:
             print("Файла нет")
@@ -33,11 +33,11 @@ class Vacancy(VacancyStorage):
         # Отработка исключения отсудствия файла
         # или если он кривого формата кодировки(как еще воевать с Win я не знаю!
         try:
-            with open('hh.json', 'r', encoding="utf8") as file:
+            with open('hh.json', 'r', encoding="utf-8") as file:
                 data_new_hh = json.loads(file.read())
         except JSONDecodeError:
             print("Файл битый, создаем пустой")
-            with open('hh.json', 'w', encoding="utf8") as file:
+            with open('hh.json', 'w', encoding="utf-8") as file:
                 pass
         except FileNotFoundError:
             print("Внимание, нет информации  с hh.ru, проведите выгрузку информации")
@@ -71,11 +71,11 @@ class Vacancy(VacancyStorage):
         # Отработка исключения отсудствия файла
         # или если он кривого формата кодировки(как еще воевать с Win я не знаю!
         try:
-            with open('sj.json', 'r', encoding="utf8") as file:
+            with open('sj.json', 'r', encoding="utf-8") as file:
                 data_new_sj = json.loads(file.read())
         except JSONDecodeError:
             print("Файл битый, создаем пустой")
-            with open('sj.json', 'w', encoding="utf8") as file:
+            with open('sj.json', 'w', encoding="utf-8") as file:
                 pass
         except FileNotFoundError:
             print("Внимание, нет информации  с superjob.ru, проведите выгрузку информации")

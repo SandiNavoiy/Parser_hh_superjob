@@ -20,10 +20,14 @@ class JSONSaver(JsonSave):
         # Отработка исключения в случае битого файла или пустого
         try:
             with open(self.filename, 'r', encoding="utf-8") as file:
-                data_new = json.loads(file.read())
+                data = file.read()
+                if data:
+                    data_new = json.loads(data)
+                else:
+                    data_new = []
         except FileNotFoundError:
             print("Файл избранных вакансий  отсутствует, создаем новый, попробуйте заново")
-            with open(self.filename, 'w', encoding="utf8"):
+            with open(self.filename, 'w', encoding="utf-8"):
                 pass
         except JSONDecodeError:
             print("Файл избранных вакансий битый")
@@ -42,10 +46,12 @@ class JSONSaver(JsonSave):
         # просто не добавлять его в новый временый список, который перезаписываем в файл избранного,
         # в принципе в таком варианте валидация ввода на наличия не имеет смысла
         try:
-            with open(self.filename, 'r', encoding="utf8") as file:
+            with open(self.filename, 'r', encoding="utf-8") as file:
                 data_new = json.loads(file.read())
-        except (FileNotFoundError, JSONDecodeError):
-            print("нет  файла  с избраными вакансиями или он битый, создайте его")
+        except FileNotFoundError:
+            print("нет  файла  с избраными вакансиями , создайте его")
+        except JSONDecodeError:
+            print("Файл с избраными вакансиями битый")
         else:
             for line in data_new:
                 if id != line["number"]:
@@ -56,7 +62,7 @@ class JSONSaver(JsonSave):
 
     def clean_file_favourites(self):
         """Очистка файла (полная с избранными вакансиями)"""
-        with open(self.filename, 'w', encoding="utf8"):
+        with open(self.filename, 'w', encoding="utf-8"):
             print("--------------")
             print("файл очищен")
             print("--------------")
