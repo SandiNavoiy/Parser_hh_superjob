@@ -27,10 +27,11 @@ class Transform:
         try:
             with open(self.file_name, 'r', encoding="utf-8") as file:
                 data_new = json.loads(file.read())
+        # Ошибка при отсудствии файла
         except FileNotFoundError:
             print("Нет файла для выгрузки, создайте его")
         except JSONDecodeError:
-            print("Файл  битый, создайте его заново")
+            print("Файл  битый или пустой, создайте его заново")
         # Записываем данные в файл txt
         else:
             with open("favor.txt", 'w', encoding="utf-8") as file:
@@ -41,10 +42,15 @@ class Transform:
         """Сохранение вакансий в Excel формате, при помощи библиотеки pandas """
         try:
             data = pd.read_json(self.file_name)
+        # Ошибка при отсудствии файла
         except FileNotFoundError:
             print("Нет файла для выгрузки, создайте его")
+        # Ошибка при другой кодировке
         except JSONDecodeError:
             print("Файл  битый, создайте его заново")
+        # Ошибка при пустом файле
+        except ValueError:
+            print("Файл  пустой")
         else:
             data.to_excel("favor.xlsx", index=False)
             print("Файл xlsx выгружен")

@@ -34,7 +34,7 @@ class JSONSaver(JsonSave):
         else:
             for line in data_new:
                 temp_favourites.append(line)
-        # Записываем вакансию в файл
+            # Записываем вакансию в файл
             with open(self.filename, 'w', encoding="utf-8") as file:
                 json.dump(temp_favourites, file, ensure_ascii=False)
             print(f"Вакансия {id} добавлена")

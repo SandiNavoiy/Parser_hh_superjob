@@ -22,7 +22,7 @@ class Vacancy(VacancyStorage):
         except FileNotFoundError:
             print("Файла нет")
         except JSONDecodeError:
-            print("Файл поврежден")
+            print("Файл поврежден, добавте вакансии в избраное")
         else:
             return f
 
@@ -56,7 +56,7 @@ class Vacancy(VacancyStorage):
                         "url": vacancy["alternate_url"]
                     })
                     number += 1
-
+                # отсекаем вариант отсудвия данных о залплате
                 except TypeError:
                     self.new_list.append({
                         "number": number,
@@ -110,7 +110,6 @@ class Vacancy(VacancyStorage):
         else:
             return self.new_list
 
-
     def sorting(self):
         """Метод сортировки"""
         print("Выберите действие:")
@@ -157,27 +156,11 @@ class Vacancy(VacancyStorage):
                 return True
         return False
 
-    def __ge__(self, other):
-        """Дандер метод больше или равно"""
-        # Валидация
-        if isinstance(other, Vacancy):
-            if int(self.salary) >= int(other.salary):
-                return True
-        return False
-
     def __lt__(self, other):
         """Дандер метод меньше"""
         # Валидация
         if isinstance(other, Vacancy):
             if int(self.salary) < int(other.salary):
-                return True
-        return False
-
-    def __le__(self, other):
-        """Дандер метод меньше или равно"""
-        # Валидация
-        if isinstance(other, Vacancy):
-            if int(self.salary) <= int(other.salary):
                 return True
         return False
 
