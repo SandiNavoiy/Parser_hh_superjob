@@ -14,9 +14,12 @@ class JSONSaver(JsonSave):
         """Метод добавления вакансии в избранное"""
         temp_favourites = []
         # Прогоняем список на наличие в нем нужного id
-        for line in new_list:
-            if id == line["number"]:
-                temp_favourites.append(line)
+        try:
+            for line in new_list:
+                if id == line["number"]:
+                    temp_favourites.append(line)
+        except TypeError:
+            print("")
         # Отработка исключения в случае битого файла или пустого
         try:
             with open(self.filename, 'r', encoding="utf-8") as file:

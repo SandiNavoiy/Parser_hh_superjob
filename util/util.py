@@ -4,8 +4,8 @@ from scr.json_saver import JSONSaver
 from scr.superjob import SuperJobAPI
 from scr.transform import Transform
 from scr.vacancy import Vacancy, NotID, NegativeSalary
-
-
+#Констранта с названием файла избраных вакансий
+FILENAME = "favor.json"
 def welcome():
     """Функция вывода приветствия"""
     print("                  Доброго времени суток")
@@ -21,11 +21,11 @@ def welcome():
 def interact_with_user():
     """Функция для взаимодействия с пользователем."""
     # Инициируем обьекты классов для работы
-    json_saver = JSONSaver("favor.json")
+    json_saver = JSONSaver(FILENAME)
     hh_api = HeadHunterAPI()
     superjob_api = SuperJobAPI()
     vacancy = Vacancy()
-    transform = Transform("favor.json")
+    transform = Transform(FILENAME)
     vacancy.list_of_vacancy()
 
     while True:
@@ -65,7 +65,7 @@ def interact_with_user():
 
         elif choice == "3":
             # Вывод файла с избранным
-            transform.printing(vacancy.read_file_favourites('favor.json'))
+            transform.printing(vacancy.read_file_favourites(FILENAME))
 
         elif choice == "4":
             # Вывод вакансий в упрошенном виде с сортировкой
