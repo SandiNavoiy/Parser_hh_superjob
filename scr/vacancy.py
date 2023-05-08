@@ -24,7 +24,10 @@ class Vacancy(VacancyStorage):
         except JSONDecodeError:
             print("Файл поврежден, добавте вакансии в избраное")
         else:
-            return f
+            if f == []:
+                print("Информации нет")
+            else:
+                return f
 
     def list_of_vacancy(self):
         """Метод сведения информации из 2-х json файлов в один список словарей"""
