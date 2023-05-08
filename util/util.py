@@ -153,6 +153,7 @@ def interact_with_user():
                 else:
                     print(vac1)
 
+
         elif choice == "12":
             # Поиск по вакансии по ключевым словам
             print("Введите параметры")

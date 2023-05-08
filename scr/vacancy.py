@@ -166,11 +166,12 @@ class Vacancy(VacancyStorage):
 
     def get_vacancies(self, id):
         """Вывод вакансии по id"""
-        temp_vac = []
+        self.temp_vac = []
         for line in self.new_list:
             if id == line["number"]:
-                temp_vac.append(line)
-        return temp_vac
+                self.temp_vac.append(line)
+
+        return self.temp_vac
 
     def get_salary(self, id):
         """Вывод з/п вакансии по id"""
@@ -205,6 +206,8 @@ class Vacancy(VacancyStorage):
             return "Не найдено вакансий по заданным критериям"
 
         return temp_vac
+    def __str__(self):
+        return f"Вакансия: {self.temp_vac['name']}\n Город: {self.temp_vac['city']}\n Опыт: {self.temp_vac['experience']}\n Залплата от: {self.temp_vac['salary_from']}\n Ссылка {self.temp_vac['url']}"
 
 
 class NotID(Exception):
