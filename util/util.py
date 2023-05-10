@@ -151,7 +151,7 @@ def interact_with_user():
                 if vac1 == []:
                     print("Вакансии не загружены в программу")
                 else:
-                    print(vac1)
+                    transform.printing(vac1)
 
 
         elif choice == "12":
