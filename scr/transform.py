@@ -19,7 +19,8 @@ class Transform:
             print('')
         else:
             for i in new_list:
-                print(i)
+
+                print(f"id вакансии: {i['number']}, Описание вакансии: {i['name']},  город: {i['city']}, опыт: {i['experience']},  з/п: {i['salary_from']}, ссылка: {i['url']}" )
 
     def to_txt(self):
         """Метод для сохранения вакансий в txt формате"""
